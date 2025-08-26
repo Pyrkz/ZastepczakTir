@@ -37,6 +37,7 @@ export default function Header() {
           >
             <Button
               asChild
+              variant="gradient"
               size="default"
               className="ml-6 text-base"
             >

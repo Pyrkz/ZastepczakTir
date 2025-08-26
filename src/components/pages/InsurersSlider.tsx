@@ -5,15 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { memo } from 'react';
 
-// Stałe kolorów
-const COLORS = {
-  primary: '#A4833B',
-  text: '#171717',
-  textSecondary: '#6b7280',
-  success: '#10b981',
-  background: '#fefdf8',
-  border: '#e5e7eb'
-} as const;
+// Usunięto stałe kolorów - teraz używamy Tailwind CSS v4 classes
 
 // Lista ubezpieczycieli
 const INSURERS = [
@@ -92,11 +84,7 @@ function InsurersSlider() {
           <button
             onClick={handlePrev}
             disabled={currentIndex === 0}
-            className="p-2 rounded-full border-2 hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-            style={{ 
-              borderColor: COLORS.primary,
-              color: COLORS.primary
-            }}
+            className="p-2 rounded-full border-2 border-gold-700 text-gold-700 hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             aria-label="Poprzedni"
           >
             <ChevronLeft size={20} />
@@ -105,11 +93,7 @@ function InsurersSlider() {
           <button
             onClick={handleNext}
             disabled={currentIndex >= maxIndex}
-            className="p-2 rounded-full border-2 hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-            style={{ 
-              borderColor: COLORS.primary,
-              color: COLORS.primary
-            }}
+            className="p-2 rounded-full border-2 border-gold-700 text-gold-700 hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             aria-label="Następny"
           >
             <ChevronRight size={20} />
@@ -119,8 +103,7 @@ function InsurersSlider() {
 
       {/* Slider container */}
       <motion.div 
-        className="relative overflow-hidden rounded-2xl p-6"
-        style={{ backgroundColor: COLORS.background }}
+        className="relative overflow-hidden rounded-2xl p-6 bg-gold-50"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
@@ -131,8 +114,7 @@ function InsurersSlider() {
         {/* Progress bar */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gray-200">
           <motion.div 
-            className="h-full rounded-full"
-            style={{ backgroundColor: COLORS.primary }}
+            className="h-full rounded-full bg-gold-700"
             initial={{ width: '0%' }}
             animate={{ 
               width: `${((currentIndex + 1) / (maxIndex + 1)) * 100}%` 
@@ -168,28 +150,19 @@ function InsurersSlider() {
                   className="block bg-white rounded-xl p-4 border border-gray-100 shadow-sm group-hover:shadow-lg transition-all duration-300 text-center group-hover:scale-105"
                 >
                   {/* Icon */}
-                  <div 
-                    className="w-10 h-10 mx-auto mb-3 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
-                    style={{ backgroundColor: COLORS.primary }}
-                  >
+                  <div className="w-10 h-10 mx-auto mb-3 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform bg-gold-700">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.25 18.75a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5T9.75 8.25v8.25a1.5 1.5 0 01-1.5 1.5zm6.75-10.5a1.5 1.5 0 00-1.5 1.5v8.25a1.5 1.5 0 001.5 1.5h3a1.5 1.5 0 001.5-1.5V9a1.5 1.5 0 00-1.5-1.5h-3z" />
                     </svg>
                   </div>
 
                   {/* Company name */}
-                  <h5 
-                    className="font-bold text-sm mb-1 transition-colors"
-                    style={{ color: COLORS.text }}
-                  >
+                  <h5 className="font-bold text-sm mb-1 transition-colors text-gray-900">
                     {name}
                   </h5>
 
                   {/* Description */}
-                  <p 
-                    className="text-xs"
-                    style={{ color: COLORS.textSecondary }}
-                  >
+                  <p className="text-xs text-gray-600">
                     Ubezpieczenia komunikacyjne
                   </p>
                 </div>
@@ -207,10 +180,9 @@ function InsurersSlider() {
                 setCurrentIndex(dotIndex);
                 setIsAutoPlaying(false);
               }}
-              className="w-2 h-2 rounded-full transition-all duration-300 hover:scale-125"
-              style={{
-                backgroundColor: currentIndex === dotIndex ? COLORS.primary : COLORS.border
-              }}
+              className={`w-2 h-2 rounded-full transition-all duration-300 hover:scale-125 ${
+                currentIndex === dotIndex ? 'bg-gold-700' : 'bg-gray-300'
+              }`}
               aria-label={`Przejdź do slajdu ${dotIndex + 1}`}
             />
           ))}
@@ -232,16 +204,10 @@ function InsurersSlider() {
           { label: 'Zadowolonych taksówkarzy', value: '99%' }
         ].map((stat) => (
           <div key={stat.label} className="text-center p-4 rounded-xl bg-gray-50">
-            <div 
-              className="text-2xl font-bold mb-1"
-              style={{ color: COLORS.primary }}
-            >
+            <div className="text-2xl font-bold mb-1 text-gold-700">
               {stat.value}
             </div>
-            <div 
-              className="text-xs font-medium"
-              style={{ color: COLORS.textSecondary }}
-            >
+            <div className="text-xs font-medium text-gray-600">
               {stat.label}
             </div>
           </div>

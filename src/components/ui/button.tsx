@@ -10,13 +10,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-gradient-to-r from-[#A4833B] to-[#dfbc7a] text-white shadow-lg hover:shadow-xl transform transition-all duration-300 ease-in-out hover:scale-105 font-semibold tracking-wide border-0 hover:from-[#854d0e] hover:to-[#ca8a04]",
+          "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90",
         destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary:
-          "bg-white text-[#A4833B] border-2 border-[#A4833B] shadow-xs hover:bg-[#fefdf8] hover:shadow-lg transition-all duration-300 ease-in-out hover:scale-105 font-semibold tracking-wide",
+          "group relative overflow-hidden bg-gradient-to-br from-white via-gold-50/40 to-gold-100/30 text-gold-700 border border-gold-300/60 shadow-[0_8px_30px_rgb(164,131,59,0.12)] hover:shadow-[0_20px_40px_rgb(164,131,59,0.2)] transition-all duration-700 ease-out hover:scale-[1.02] font-bold tracking-wide hover:text-gold-800 backdrop-blur-sm before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-gold-200/20 before:opacity-90 hover:before:opacity-100 before:transition-all before:duration-700 after:absolute after:inset-[-1px] after:bg-gradient-to-r after:from-transparent after:via-gold-300/0 after:to-transparent hover:after:via-gold-300/50 after:transition-all after:duration-1000 after:ease-in-out after:animate-[shimmer_2s_ease-in-out_infinite] [&>*]:relative [&>*]:z-10",
+        gradient:
+          "bg-gradient-to-r from-gold-700 to-gold-500 text-white shadow-lg hover:shadow-xl transform transition-all duration-300 ease-in-out hover:scale-[1.02] font-semibold tracking-wide border-0 hover:from-gold-700/90 hover:to-gold-500/90",
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",

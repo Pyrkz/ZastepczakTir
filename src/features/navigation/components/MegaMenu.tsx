@@ -13,11 +13,11 @@ interface MegaMenuProps {
 
 export function MegaMenu({ item }: MegaMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = () => {
-    clearTimeout(timeoutRef.current);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setIsOpen(true);
   };
 
@@ -85,7 +85,7 @@ export function MegaMenu({ item }: MegaMenuProps) {
             initial={{ opacity: 0, scale: 0.95, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
             className="absolute left-0 top-full mt-0 bg-white shadow-xl rounded-lg border border-gray-200 origin-top text-left"
             style={{ minWidth: '800px' }}
           >

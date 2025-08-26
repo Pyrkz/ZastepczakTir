@@ -2,16 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { memo } from 'react';
+import { Button } from '../ui/button';
 
-// Stałe kolorów
-const COLORS = {
-  primary: '#A4833B',
-  text: '#171717',
-  textSecondary: '#6b7280',
-  success: '#10b981',
-  background: '#fefdf8',
-  border: '#e5e7eb'
-} as const;
+// Usunięto stałe kolorów - teraz używamy Tailwind CSS v4 classes
 
 // Animacje
 const containerVariants = {
@@ -22,18 +15,21 @@ const containerVariants = {
       staggerChildren: 0.1
     }
   }
-};
+} as const;
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
   }
-};
+} as const;
 
 function ContactInfoSection() {
+  const handlePhoneCall = (phoneNumber: string) => {
+    window.location.href = `tel:${phoneNumber}`;
+  };
   return (
     <motion.div
       className="order-1 lg:order-2"
@@ -43,38 +39,36 @@ function ContactInfoSection() {
       viewport={{ once: true }}
     >
       <motion.div variants={itemVariants} className="mb-8 text-center">
-        <h4 
-          className="text-xl sm:text-2xl font-bold mb-4"
-          style={{ color: COLORS.text }}
-        >
+        <h4 className="text-xl sm:text-2xl font-bold mb-4 text-gray-900">
           Skorzystaj z formularza
         </h4>
-        <p 
-          className="text-base sm:text-lg leading-relaxed mb-6"
-          style={{ color: COLORS.textSecondary }}
-        >
+        <p className="text-base sm:text-lg leading-relaxed mb-6 text-gray-600">
           Wypełnij formularz kontaktowy na naszej stronie, aby szybko i łatwo rozpocząć proces wynajmu.
         </p>
       </motion.div>
 
       <motion.div variants={itemVariants} className="mb-8 text-center">
-        <h5 
-          className="text-lg font-bold mb-4"
-          style={{ color: COLORS.text }}
-        >
+        <h5 className="text-lg font-bold mb-4 text-gray-900">
           Lub zadzwoń
         </h5>
         <div className="flex justify-center">
-          <a
-            href="tel:+48536565565"
-            className="inline-flex items-center px-6 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg text-white"
-            style={{ backgroundColor: COLORS.primary }}
-          >
-            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-80 max-w-full">
+            <Button
+              variant="gradient"
+              size="default"
+              onClick={() => handlePhoneCall('+48536565565')}
+              className="group w-full text-lg"
+              aria-label="Zadzwoń teraz po taxi zastępcze"
+            >
+            <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
-            +48 536 565 565
-          </a>
+            <span className="mr-2">+48 536 565 565</span>
+            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+            </Button>
+          </div>
         </div>
       </motion.div>
 
@@ -83,10 +77,7 @@ function ContactInfoSection() {
         variants={itemVariants}
         className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
       >
-        <h6 
-          className="text-lg font-bold mb-4"
-          style={{ color: COLORS.text }}
-        >
+        <h6 className="text-lg font-bold mb-4 text-gray-900">
           Dlaczego warto skorzystać z naszych usług?
         </h6>
         
@@ -131,23 +122,14 @@ function ContactInfoSection() {
             }
           ].map((feature, index) => (
             <div key={index} className="flex items-start gap-3">
-              <div 
-                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white"
-                style={{ backgroundColor: COLORS.primary }}
-              >
+              <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white bg-gold-700">
                 {feature.icon}
               </div>
               <div>
-                <div 
-                  className="font-semibold text-sm mb-1"
-                  style={{ color: COLORS.text }}
-                >
+                <div className="font-semibold text-sm mb-1 text-gray-900">
                   {feature.title}
                 </div>
-                <p 
-                  className="text-xs leading-relaxed"
-                  style={{ color: COLORS.textSecondary }}
-                >
+                <p className="text-xs leading-relaxed text-gray-600">
                   {feature.description}
                 </p>
               </div>
@@ -156,16 +138,13 @@ function ContactInfoSection() {
         </div>
 
         {/* Contact Info */}
-        <div 
-          className="mt-6 pt-6 border-t text-center"
-          style={{ borderColor: COLORS.border }}
-        >
+        <div className="mt-6 pt-6 border-t border-gray-200 text-center">
           <div className="flex items-center justify-center gap-2 text-sm">
-            <svg className="w-4 h-4" style={{ color: COLORS.primary }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-gold-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span style={{ color: COLORS.textSecondary }}>
-              Czas odpowiedzi: <strong style={{ color: COLORS.text }}>do 30 minut</strong>
+            <span className="text-gray-600">
+              Czas odpowiedzi: <strong className="text-gray-900">do 30 minut</strong>
             </span>
           </div>
         </div>
@@ -176,37 +155,19 @@ function ContactInfoSection() {
         variants={itemVariants}
         className="mt-6 grid grid-cols-2 gap-4"
       >
-        <div 
-          className="text-center p-4 rounded-xl"
-          style={{ backgroundColor: COLORS.background }}
-        >
-          <div 
-            className="text-2xl font-bold"
-            style={{ color: COLORS.primary }}
-          >
+        <div className="text-center p-4 rounded-xl bg-gold-50">
+          <div className="text-2xl font-bold text-gold-700">
             5000+
           </div>
-          <div 
-            className="text-xs font-medium"
-            style={{ color: COLORS.textSecondary }}
-          >
+          <div className="text-xs font-medium text-gray-600">
             Zadowolonych klientów
           </div>
         </div>
-        <div 
-          className="text-center p-4 rounded-xl"
-          style={{ backgroundColor: COLORS.background }}
-        >
-          <div 
-            className="text-2xl font-bold"
-            style={{ color: COLORS.primary }}
-          >
+        <div className="text-center p-4 rounded-xl bg-gold-50">
+          <div className="text-2xl font-bold text-gold-700">
             24h
           </div>
-          <div 
-            className="text-xs font-medium"
-            style={{ color: COLORS.textSecondary }}
-          >
+          <div className="text-xs font-medium text-gray-600">
             Czas realizacji
           </div>
         </div>

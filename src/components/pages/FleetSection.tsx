@@ -6,16 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { memo } from 'react';
 import Image from 'next/image';
 
-// Stałe kolorów
-const COLORS = {
-  primary: '#A4833B',
-  text: '#171717',
-  textSecondary: '#6b7280',
-  success: '#10b981',
-  background: '#fefdf8',
-  border: '#e5e7eb',
-  cardBg: '#f8f9fa'
-} as const;
+// Usunięto stałe kolorów - teraz używamy Tailwind CSS v4 classes
 
 // Dane pojazdów z kategoryzacją
 const FLEET_DATA = {
@@ -76,16 +67,16 @@ const containerVariants = {
     opacity: 1,
     transition: { staggerChildren: 0.1 }
   }
-};
+} as const;
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
   }
-};
+} as const;
 
 function FleetSection() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>('Osobowe');
@@ -149,14 +140,8 @@ function FleetSection() {
     <section className="bg-white py-16 lg:py-20 relative overflow-hidden">
       {/* Subtelne tło */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-10"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.3)' }}
-        />
-        <div 
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-8"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.2)' }}
-        />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl bg-gold-700/10" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl bg-gold-700/8" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -169,18 +154,14 @@ function FleetSection() {
           transition={{ duration: 0.6 }}
         >
           {/* H2 - semantycznie pierwszy, wizualnie drugi */}
-          <h2 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 leading-tight order-2 px-4"
-            style={{ color: COLORS.text }}
-          >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 leading-tight order-2 px-4 text-gray-900">
             Nasza rozbudowana flota{' '}
             <br className="hidden sm:inline" />
-            <span style={{ color: COLORS.primary }}>gwarantuje dopasowanie pojazdu</span>
+            <span className="text-gold-700">gwarantuje dopasowanie pojazdu</span>
             
             {/* Dekoracyjna linia */}
             <motion.div 
-              className="w-16 sm:w-20 h-1 mx-auto mt-3 lg:mt-4 rounded-full"
-              style={{ backgroundColor: COLORS.primary }}
+              className="w-16 sm:w-20 h-1 mx-auto mt-3 lg:mt-4 rounded-full bg-gold-700"
               initial={{ width: 0 }}
               whileInView={{ width: typeof window !== 'undefined' && window.innerWidth < 640 ? 64 : 80 }}
               viewport={{ once: true }}
@@ -189,10 +170,7 @@ function FleetSection() {
           </h2>
 
           {/* H3 - semantycznie drugi, wizualnie pierwszy */}
-          <h3 
-            className="text-base sm:text-lg font-semibold mb-4 order-1 px-4"
-            style={{ color: COLORS.primary }}
-          >
+          <h3 className="text-base sm:text-lg font-semibold mb-4 order-1 px-4 text-gold-700">
             Dziesiątki modeli pojazdów - znajdziemy odpowiednik Twojego taxi
           </h3>
         </motion.div>
@@ -205,17 +183,11 @@ function FleetSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <p 
-            className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 lg:mb-4"
-            style={{ color: COLORS.textSecondary }}
-          >
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 lg:mb-4 text-gray-600">
             Dzięki szerokiemu parkowi pojazdów możemy zapewnić Ci pojazd zastępczy w tej samej klasie lub wyższej niż Twoje uszkodzone taxi.
             Dysponujemy samochodami osobowymi, premium, rodzinnymi oraz specjalistycznymi pojazdami dostawczymi i ciężarowymi.
           </p>
-          <p 
-            className="text-xs sm:text-sm md:text-base leading-relaxed"
-            style={{ color: COLORS.textSecondary }}
-          >
+          <p className="text-xs sm:text-sm md:text-base leading-relaxed text-gray-600">
             Niezależnie od marki i modelu Twojego taxi, w naszej flocie znajdziesz odpowiedni pojazd zastępczy, który pozwoli Ci kontynuować działalność bez przestojów.
           </p>
         </motion.div>
@@ -234,12 +206,9 @@ function FleetSection() {
               onClick={() => handleCategoryChange(category)}
               className={`px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
-                  ? 'text-white transform scale-105 shadow-lg'
+                  ? 'text-white bg-gray-900 transform scale-105 shadow-lg'
                   : 'text-gray-600 bg-gray-100 hover:bg-gray-200'
               }`}
-              style={{
-                backgroundColor: activeCategory === category ? COLORS.text : undefined
-              }}
             >
               {category}
             </button>
@@ -259,8 +228,7 @@ function FleetSection() {
             <button
               onClick={handlePrevSlide}
               disabled={maxSlides <= 1}
-              className="p-3 rounded-full bg-white shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ color: COLORS.primary }}
+              className="p-3 rounded-full bg-white shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed text-gold-700"
             >
               <ChevronLeft size={24} />
             </button>
@@ -270,8 +238,7 @@ function FleetSection() {
             <button
               onClick={handleNextSlide}
               disabled={maxSlides <= 1}
-              className="p-3 rounded-full bg-white shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ color: COLORS.primary }}
+              className="p-3 rounded-full bg-white shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed text-gold-700"
             >
               <ChevronRight size={24} />
             </button>
@@ -282,21 +249,19 @@ function FleetSection() {
             <button
               onClick={handlePrevSlide}
               disabled={maxSlides <= 1}
-              className="p-2 rounded-full bg-white shadow-md border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ color: COLORS.primary }}
+              className="p-2 rounded-full bg-white shadow-md border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-gold-700"
             >
               <ChevronLeft size={20} />
             </button>
             
-            <span className="text-sm font-medium" style={{ color: COLORS.textSecondary }}>
+            <span className="text-sm font-medium text-gray-600">
               {currentSlide + 1} / {maxSlides}
             </span>
             
             <button
               onClick={handleNextSlide}
               disabled={maxSlides <= 1}
-              className="p-2 rounded-full bg-white shadow-md border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ color: COLORS.primary }}
+              className="p-2 rounded-full bg-white shadow-md border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-gold-700"
             >
               <ChevronRight size={20} />
             </button>
@@ -337,10 +302,7 @@ function FleetSection() {
                             />
                             
                             {/* Category badge */}
-                            <div 
-                              className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold text-white shadow-md"
-                              style={{ backgroundColor: COLORS.primary }}
-                            >
+                            <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold text-white shadow-md bg-gold-700">
                               {activeCategory}
                             </div>
                           </>
@@ -350,27 +312,20 @@ function FleetSection() {
                             <div className="w-full h-full bg-gray-200 flex items-center justify-center">
                               <div className="text-center">
                                 <svg 
-                                  className="w-16 h-16 mx-auto mb-2 opacity-50" 
+                                  className="w-16 h-16 mx-auto mb-2 opacity-50 text-gold-700" 
                                   fill="none" 
                                   stroke="currentColor" 
                                   viewBox="0 0 24 24"
-                                  style={{ color: COLORS.primary }}
                                 >
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0h6m-6 0l-2 9a2 2 0 002 2h8a2 2 0 002-2l-2-9m-8 0V6a2 2 0 012-2h4a2 2 0 012 2v1" />
                                 </svg>
-                                <p 
-                                  className="text-sm font-medium"
-                                  style={{ color: COLORS.textSecondary }}
-                                >
+                                <p className="text-sm font-medium text-gray-600">
                                   {vehicle.name}
                                 </p>
                               </div>
                             </div>
                             {/* Category badge */}
-                            <div 
-                              className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold text-white shadow-md"
-                              style={{ backgroundColor: COLORS.primary }}
-                            >
+                            <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold text-white shadow-md bg-gold-700">
                               {activeCategory}
                             </div>
                           </>
@@ -379,10 +334,7 @@ function FleetSection() {
 
                       {/* Vehicle Info */}
                       <div className="p-5 sm:p-6 lg:p-8">
-                        <h4 
-                          className="text-lg sm:text-xl lg:text-2xl font-bold transition-colors text-center"
-                          style={{ color: COLORS.text }}
-                        >
+                        <h4 className="text-lg sm:text-xl lg:text-2xl font-bold transition-colors text-center text-gray-900">
                           {vehicle.name}
                         </h4>
                       </div>
@@ -400,10 +352,7 @@ function FleetSection() {
                 <button
                   key={slideIndex}
                   onClick={() => setCurrentSlide(slideIndex)}
-                  className="w-2 sm:w-3 h-2 sm:h-3 rounded-full transition-all duration-300 hover:scale-125"
-                  style={{
-                    backgroundColor: currentSlide === slideIndex ? COLORS.primary : COLORS.border
-                  }}
+                  className={`w-2 sm:w-3 h-2 sm:h-3 rounded-full transition-all duration-300 hover:scale-125 ${currentSlide === slideIndex ? 'bg-gold-700' : 'bg-gray-300'}`}
                   aria-label={`Przejdź do slajdu ${slideIndex + 1}`}
                 />
               ))}

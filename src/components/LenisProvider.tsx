@@ -15,7 +15,7 @@ export default function LenisProvider({ children }: LenisProviderProps) {
         lerp: 0.1,
         duration: 1.2,
         smoothWheel: true,
-        smoothTouch: false,
+        // smoothTouch: false, // Właściwość nieobsługiwana w najnowszej wersji Lenis
       }}
     >
       {children}

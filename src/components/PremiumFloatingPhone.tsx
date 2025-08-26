@@ -42,7 +42,7 @@ function StablePhoneCTA({
 
   // Enhanced scroll detection with Lenis
   useEffect(() => {
-    const handleScroll = (scroll: any) => {
+    const handleScroll = (scroll: { scroll: number }) => {
       setIsVisible(scroll.scroll > showAfterScroll);
     };
 
@@ -73,7 +73,7 @@ function StablePhoneCTA({
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
         className="fixed bottom-0 left-0 right-0 z-[9999] p-4"
         style={{ 
           background: `linear-gradient(to top, ${COLORS.white}, ${COLORS.white}f0)`,
@@ -131,7 +131,7 @@ function StablePhoneCTA({
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0, opacity: 0 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
       className="fixed bottom-6 right-6 z-[9999]"
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
@@ -183,7 +183,7 @@ function StablePhoneCTA({
           paddingLeft: isExpanded ? '20px' : '0px',
           paddingRight: isExpanded ? '20px' : '0px'
         }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
+        transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
         whileHover={{ scale: 1.02, y: -1 }}
         whileTap={{ scale: 0.98 }}
       >
@@ -209,7 +209,7 @@ function StablePhoneCTA({
               width: isExpanded ? '120px' : '0px',
               opacity: isExpanded ? 1 : 0
             }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
             className="whitespace-nowrap"
           >
             <div className="text-left">
@@ -248,7 +248,7 @@ function StablePhoneCTA({
                 scale: [1, 1.8],
                 opacity: [0.6, 0]
                 }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: [0.4, 0, 0.2, 1] }}
             />
         </div>
       </motion.button>

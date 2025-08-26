@@ -6,17 +6,6 @@ import { memo } from 'react';
 import Image from 'next/image';
 import { ReCaptchaProvider, useReCaptcha } from 'next-recaptcha-v3';
 
-// Stałe kolorów - zachowane bez zmian
-const COLORS = {
-  primary: '#A4833B',
-  text: '#171717',
-  textSecondary: '#6b7280',
-  success: '#10b981',
-  background: '#fefdf8',
-  border: '#e5e7eb',
-  error: '#ef4444'
-} as const;
-
 // Lista ubezpieczycieli - posortowana alfabetycznie
 const INSURERS = [
   'Allianz', 'Beesafe', 'Benefia', 'Compensa', 'Ergo Hestia',
@@ -330,8 +319,7 @@ function PhoneContactFormInner() {
               transition={{ duration: 0.5 }}
             >
               <motion.div 
-                className="w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg"
-                style={{ backgroundColor: COLORS.success }}
+                className="w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg bg-emerald-500"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
@@ -354,8 +342,7 @@ function PhoneContactFormInner() {
                 </motion.svg>
               </motion.div>
               <motion.h3 
-                className="text-xl font-bold mb-3" 
-                style={{ color: COLORS.text }}
+                className="text-xl font-bold mb-3 text-foreground" 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
@@ -363,8 +350,7 @@ function PhoneContactFormInner() {
                 Dziękujemy!
               </motion.h3>
               <motion.p 
-                className="text-sm mb-6 leading-relaxed" 
-                style={{ color: COLORS.textSecondary }}
+                className="text-sm mb-6 leading-relaxed text-muted-foreground" 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
@@ -374,8 +360,7 @@ function PhoneContactFormInner() {
               </motion.p>
               <motion.button
                 onClick={resetForm}
-                className="px-8 py-3 rounded-xl text-white text-sm font-semibold hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl"
-                style={{ backgroundColor: COLORS.primary }}
+                className="px-8 py-3 rounded-xl text-white text-sm font-semibold hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl bg-gold-700"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
@@ -389,10 +374,10 @@ function PhoneContactFormInner() {
             <form onSubmit={currentStep === 2 ? handleSubmit : (e) => { e.preventDefault(); handleNextStep(); }} className="h-full flex flex-col">
               {/* Header */}
               <div className="text-center mb-4 sm:mb-6 pt-1 sm:pt-2">
-                <h2 className="text-base sm:text-lg font-bold mb-1" style={{ color: COLORS.text }}>
+                <h2 className="text-base sm:text-lg font-bold mb-1 text-foreground">
                   Zgłoś szkodę
                 </h2>
-                <p className="text-xs" style={{ color: COLORS.textSecondary }}>
+                <p className="text-xs text-muted-foreground">
                   Szybko i bezpiecznie
                 </p>
               </div>
@@ -400,17 +385,16 @@ function PhoneContactFormInner() {
               {/* Progress bar */}
               <div className="mb-4 sm:mb-6">
                 <div className="flex items-center justify-between mb-2 sm:mb-3">
-                  <span className="text-xs sm:text-sm font-bold" style={{ color: COLORS.primary }}>
+                  <span className="text-xs sm:text-sm font-bold text-gold-700">
                     Krok {currentStep} z 2
                   </span>
-                  <span className="text-xs font-medium" style={{ color: COLORS.textSecondary }}>
+                  <span className="text-xs font-medium text-muted-foreground">
                     {currentStep === 1 ? 'Dane pojazdu' : 'Kontakt'}
                   </span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-1.5 sm:h-2 shadow-inner">
                   <motion.div 
-                    className="h-1.5 sm:h-2 rounded-full shadow-sm"
-                    style={{ backgroundColor: COLORS.primary }}
+                    className="h-1.5 sm:h-2 rounded-full shadow-sm bg-gold-700"
                     initial={{ width: '50%' }}
                     animate={{ width: currentStep === 1 ? '50%' : '100%' }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -421,12 +405,11 @@ function PhoneContactFormInner() {
               {/* Błąd wysyłania */}
               {errors.submit && (
                 <motion.div 
-                  className="mb-4 p-4 rounded-xl border-l-4 bg-red-50 shadow-sm"
-                  style={{ borderColor: COLORS.error }}
+                  className="mb-4 p-4 rounded-xl border-l-4 bg-red-50 shadow-sm border-red-500"
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                 >
-                  <p className="text-sm" style={{ color: COLORS.error }}>
+                  <p className="text-sm text-red-500">
                     {errors.submit}
                   </p>
                 </motion.div>
@@ -445,12 +428,12 @@ function PhoneContactFormInner() {
                       transition={{ duration: 0.3 }}
                       className="space-y-3 sm:space-y-5"
                     >
-                      <div className="text-sm sm:text-base font-bold mb-4 sm:mb-6" style={{ color: COLORS.text }}>
+                      <div className="text-sm sm:text-base font-bold mb-4 sm:mb-6 text-foreground">
                         Informacje o uszkodzonym pojeździe
                       </div>
                       
                       <div>
-                        <label className="block text-xs sm:text-sm font-semibold mb-1 sm:mb-2" style={{ color: COLORS.text }}>
+                        <label className="block text-xs sm:text-sm font-semibold mb-1 sm:mb-2 text-foreground">
                           Marka i model pojazdu *
                         </label>
                         <input
@@ -484,7 +467,7 @@ function PhoneContactFormInner() {
                       </div>
 
                       <div>
-                        <label className="block text-xs sm:text-sm font-semibold mb-1 sm:mb-2" style={{ color: COLORS.text }}>
+                        <label className="block text-xs sm:text-sm font-semibold mb-1 sm:mb-2 text-foreground">
                           Numer rejestracyjny *
                         </label>
                         <input
@@ -518,7 +501,7 @@ function PhoneContactFormInner() {
                       </div>
 
                       <div>
-                        <label className="block text-xs sm:text-sm font-semibold mb-1 sm:mb-2" style={{ color: COLORS.text }}>
+                        <label className="block text-xs sm:text-sm font-semibold mb-1 sm:mb-2 text-foreground">
                           Towarzystwo ubezpieczeniowe sprawcy *
                         </label>
                         <select
@@ -566,12 +549,12 @@ function PhoneContactFormInner() {
                       transition={{ duration: 0.3 }}
                       className="space-y-5"
                     >
-                      <div className="text-base font-bold mb-6" style={{ color: COLORS.text }}>
+                      <div className="text-base font-bold mb-6 text-foreground">
                         Dane kontaktowe
                       </div>
                       
                       <div>
-                        <label className="block text-sm font-semibold mb-2" style={{ color: COLORS.text }}>
+                        <label className="block text-sm font-semibold mb-2 text-foreground">
                           Imię i nazwisko *
                         </label>
                         <input
@@ -606,7 +589,7 @@ function PhoneContactFormInner() {
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-semibold mb-2" style={{ color: COLORS.text }}>
+                          <label className="block text-sm font-semibold mb-2 text-foreground">
                             Kod pocztowy
                           </label>
                           <input
@@ -637,7 +620,7 @@ function PhoneContactFormInner() {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-semibold mb-2" style={{ color: COLORS.text }}>
+                          <label className="block text-sm font-semibold mb-2 text-foreground">
                             Miejscowość *
                           </label>
                           <input
@@ -669,7 +652,7 @@ function PhoneContactFormInner() {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold mb-2" style={{ color: COLORS.text }}>
+                        <label className="block text-sm font-semibold mb-2 text-foreground">
                           Telefon kontaktowy *
                         </label>
                         <input
@@ -708,7 +691,7 @@ function PhoneContactFormInner() {
                      </div>
 
                      <div>
-                       <label className="block text-sm font-semibold mb-2" style={{ color: COLORS.text }}>
+                       <label className="block text-sm font-semibold mb-2 text-foreground">
                          Adres email *
                        </label>
                        <input
@@ -754,12 +737,8 @@ function PhoneContactFormInner() {
                           />
                           <div 
                             className={`w-5 h-5 border-2 rounded-md transition-all duration-200 flex items-center justify-center shadow-sm ${
-                              errors.privacyPolicy ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                              errors.privacyPolicy ? 'border-red-300 bg-red-50' : formData.privacyPolicy ? 'bg-gold-700 border-gold-700' : 'border-gray-300'
                             }`}
-                            style={{
-                              backgroundColor: formData.privacyPolicy ? COLORS.primary : undefined,
-                              borderColor: formData.privacyPolicy ? COLORS.primary : undefined
-                            }}
                           >
                               {formData.privacyPolicy && (
                               <motion.svg 
@@ -776,15 +755,14 @@ function PhoneContactFormInner() {
                               )}
                           </div>
                           </div>
-                          <span className="text-xs leading-relaxed" style={{ color: COLORS.textSecondary }}>
-                          <strong style={{ color: COLORS.text }}>Polityka prywatności *</strong><br />
+                          <span className="text-xs leading-relaxed text-muted-foreground">
+                          <strong className="text-foreground">Polityka prywatności *</strong><br />
                           Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zgłoszenia oraz kontaktu w sprawie szkody komunikacyjnej. 
                           <a 
                               href="/polityka-prywatnosci" 
                               target="_blank" 
                               rel="noopener noreferrer"
-                              className="underline hover:no-underline ml-1"
-                              style={{ color: COLORS.primary }}
+                              className="underline hover:no-underline ml-1 text-gold-700"
                               onClick={(e) => e.stopPropagation()}
                           >
                               Przeczytaj pełną politykę
@@ -817,8 +795,7 @@ function PhoneContactFormInner() {
                 {currentStep === 1 ? (
                   <motion.button 
                     type="submit"
-                    className="w-full h-12 sm:h-14 rounded-lg sm:rounded-xl text-white text-sm sm:text-base font-bold transition-all duration-200 shadow-lg hover:shadow-xl"
-                    style={{ backgroundColor: COLORS.primary }}
+                    className="w-full h-12 sm:h-14 rounded-lg sm:rounded-xl text-white text-sm sm:text-base font-bold transition-all duration-200 shadow-lg hover:shadow-xl bg-gold-700"
                     whileHover={{ scale: 1.02, y: -1 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -829,12 +806,7 @@ function PhoneContactFormInner() {
                     <motion.button 
                       type="button"
                       onClick={handlePreviousStep}
-                      className="flex-1 h-12 sm:h-14 rounded-lg sm:rounded-xl text-sm sm:text-base font-bold border-2 transition-all duration-200 shadow-lg hover:shadow-xl"
-                      style={{ 
-                        borderColor: COLORS.primary,
-                        color: COLORS.primary,
-                        backgroundColor: 'white'
-                      }}
+                      className="flex-1 h-12 sm:h-14 rounded-lg sm:rounded-xl text-sm sm:text-base font-bold border-2 transition-all duration-200 shadow-lg hover:shadow-xl border-gold-700 text-gold-700 bg-white"
                       whileHover={{ scale: 1.02, y: -1 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -843,8 +815,7 @@ function PhoneContactFormInner() {
                     <motion.button 
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex-2 h-12 sm:h-14 rounded-lg sm:rounded-xl text-white text-sm sm:text-base font-bold transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed min-w-[120px] sm:min-w-[140px]"
-                      style={{ backgroundColor: COLORS.primary }}
+                      className="flex-2 h-12 sm:h-14 rounded-lg sm:rounded-xl text-white text-sm sm:text-base font-bold transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed min-w-[120px] sm:min-w-[140px] bg-gold-700"
                       whileHover={!isSubmitting ? { scale: 1.02, y: -1 } : {}}
                       whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                     >

@@ -3,10 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/features/header";
-import Footer from "@/components/Footer";
+import { Footer } from "@/features/footer";
 import LenisProvider from "@/components/LenisProvider";
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
-import PremiumFloatingPhone from "@/components/PremiumFloatingPhone";
+import PremiumFloatingPhone from "@/components/pages/PremiumFloatingPhone";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     //   'facebook-domain-verification': 'twój-facebook-verification-code',
     // },
   },
-};
+} as const;
 
 export default function RootLayout({
   children,

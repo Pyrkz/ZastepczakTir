@@ -11,7 +11,6 @@ import FAQSection from "@/components/pages/FAQSection";
 import TestimonialsSection from "@/components/pages/TestimonialsSection";
 import OtherServicesSection from "@/components/pages/OtherServicesSection";
 import CTASection from "@/components/pages/CTASection";
-import PremiumFloatingPhone from "@/components/PremiumFloatingPhone";
 
 export default function Home() {
   return (
@@ -29,7 +28,7 @@ export default function Home() {
     <OtherServicesSection />
     <CTASection />
 
-    <PremiumFloatingPhone />
+
     </>
   );
 }

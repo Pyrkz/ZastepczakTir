@@ -3,17 +3,6 @@
 import { motion } from 'framer-motion';
 import { memo } from 'react';
 
-// Stałe kolorów dla spójności z HeroSection
-const COLORS = {
-  primary: '#A4833B',
-  text: '#171717',
-  textSecondary: '#6b7280',
-  success: '#10b981',
-  background: '#fefdf8',
-  border: '#e5e7eb',
-  cardBg: '#ffffff'
-} as const;
-
 // Ikony SVG dla każdego benefitu - dostosowane do branży taxi
 const BENEFIT_ICONS = {
   money: (
@@ -91,30 +80,24 @@ const containerVariants = {
       staggerChildren: 0.1
     }
   }
-};
+} as const;
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
   }
-};
+} as const;
 
 function BenefitsSection() {
   return (
     <section className="bg-white py-16 lg:py-20 relative overflow-hidden">
       {/* Subtelne tło */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute top-0 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-30"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.08)' }}
-        />
-        <div 
-          className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.05)' }}
-        />
+        <div className="absolute top-0 left-1/4 w-72 h-72 rounded-full blur-3xl bg-gold-700/5" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl bg-gold-700/5" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -127,32 +110,20 @@ function BenefitsSection() {
           transition={{ duration: 0.6 }}
         >
           {/* H2 - semantycznie pierwszy, ale wizualnie drugi (order-2) */}
-          <h2 
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight order-2"
-            style={{ color: COLORS.text }}
-          >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight order-2 text-foreground">
             Wynajmij taxi zastępcze{' '}
-            <span style={{ color: COLORS.primary }}>z OC sprawcy</span>
+            <span className="text-gold-700">z OC sprawcy</span>
             <br className="hidden md:inline" />
-            <span className="text-2xl sm:text-3xl lg:text-4xl block mt-2" style={{ color: COLORS.textSecondary }}>
+            <span className="text-2xl sm:text-3xl lg:text-4xl block mt-2 text-muted-foreground">
               i kontynuuj pracę jako taksówkarz
             </span>
           </h2>
 
           {/* H3 - semantycznie drugi, ale wizualnie pierwszy (order-1) */}
-          <h3 
-            className="text-lg font-semibold mb-4 order-1"
-            style={{ color: COLORS.primary }}
-          >
+          <h3 className="text-lg font-semibold mb-4 order-1 text-gold-700">
             <span className="relative flex h-2 w-2 mr-2 inline-flex">
-              <span 
-                className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" 
-                style={{ backgroundColor: COLORS.success }}
-              />
-              <span 
-                className="relative inline-flex rounded-full h-2 w-2" 
-                style={{ backgroundColor: COLORS.success }}
-              />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
             Specjalizujemy się w taxi zastępczych dla taksówkarzy
           </h3>
@@ -177,51 +148,27 @@ function BenefitsSection() {
               className="group relative"
             >
               {/* Card */}
-              <div 
-                className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 transition-all duration-300 h-full shadow-sm hover:shadow-lg"
-                style={{ backgroundColor: COLORS.cardBg }}
-              >
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 transition-all duration-300 h-full shadow-sm hover:shadow-lg">
                 {/* Icon + Highlight badge */}
                 <div className="flex items-center justify-between mb-4">
-                  <div 
-                    className="flex items-center justify-center w-12 h-12 rounded-xl"
-                    style={{ backgroundColor: COLORS.background, color: COLORS.primary }}
-                  >
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gold-50 text-gold-700">
                     {benefit.icon}
                   </div>
-                  <span 
-                    className="text-xs font-semibold px-2 py-1 rounded-full"
-                    style={{ 
-                      backgroundColor: 'rgba(164, 131, 59, 0.1)', 
-                      color: COLORS.primary 
-                    }}
-                  >
+                  <span className="text-xs font-semibold px-2 py-1 rounded-full bg-gold-700/10 text-gold-700">
                     {benefit.highlight}
                   </span>
                 </div>
 
                 {/* Content */}
-                <h4 
-                  className="text-lg font-bold mb-3 group-hover:text-opacity-80 transition-colors"
-                  style={{ color: COLORS.text }}
-                >
+                <h4 className="text-lg font-bold mb-3 text-foreground group-hover:text-opacity-80 transition-colors">
                   {benefit.title}
                 </h4>
-                <p 
-                  className="text-sm leading-relaxed"
-                  style={{ color: COLORS.textSecondary }}
-                >
+                <p className="text-sm leading-relaxed text-muted-foreground">
                   {benefit.desc}
                 </p>
 
                 {/* Hover effect border */}
-                <div 
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{ 
-                    background: `linear-gradient(135deg, rgba(164, 131, 59, 0.1) 0%, transparent 50%)`,
-                    border: `2px solid rgba(164, 131, 59, 0.2)`
-                  }}
-                />
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br from-gold-700/5 to-transparent border-2 border-gold-700/20" />
               </div>
             </motion.div>
           ))}
@@ -235,12 +182,9 @@ function BenefitsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <p 
-            className="text-lg font-medium"
-            style={{ color: COLORS.textSecondary }}
-          >
+          <p className="text-lg font-medium text-muted-foreground">
             Potrzebujesz taxi zastępczego? 
-            <span className="font-semibold ml-1" style={{ color: COLORS.primary }}>
+            <span className="font-semibold ml-1 text-gold-700">
               Zadzwoń: +48 536 565 565
             </span>
           </p>

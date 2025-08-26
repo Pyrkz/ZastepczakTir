@@ -2,18 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { memo } from 'react';
-import PhoneContactForm from '@/components/PhoneContactForm';
-import ContactInfoSection from '@/components/ContactInfoSection';
-
-// Stałe kolorów
-const COLORS = {
-  primary: '#A4833B',
-  text: '#171717',
-  textSecondary: '#6b7280',
-  success: '#10b981',
-  background: '#fefdf8',
-  border: '#e5e7eb'
-} as const;
+import PhoneContactForm from '@/components/pages/PhoneContactForm';
+import ContactInfoSection from '@/components/pages/ContactInfoSection';
 
 function ContactFormSection() {
   return (
@@ -23,14 +13,8 @@ function ContactFormSection() {
     >
       {/* Subtelne tło */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-5"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.3)' }}
-        />
-        <div 
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-3"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.2)' }}
-        />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl bg-gold-700/5" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl bg-gold-700/3" />
       </div>
 
       <div className="max-w-7xl mx-auto px-1 sm:px-2 lg:px-1 relative z-10">
@@ -43,17 +27,13 @@ function ContactFormSection() {
           transition={{ duration: 0.6 }}
         >
           {/* H2 - semantycznie pierwszy, wizualnie drugi */}
-          <h2 
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 leading-tight order-2"
-            style={{ color: COLORS.text }}
-          >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 leading-tight order-2 text-foreground">
             Gotowy na{' '}
-            <span style={{ color: COLORS.primary }}>Wynajem?</span>
+            <span className="text-gold-700">Wynajem?</span>
             
             {/* Dekoracyjna linia */}
             <motion.div 
-              className="w-20 h-1 mx-auto mt-4 rounded-full"
-              style={{ backgroundColor: COLORS.primary }}
+              className="w-20 h-1 mx-auto mt-4 rounded-full bg-gold-700"
               initial={{ width: 0 }}
               whileInView={{ width: 80 }}
               viewport={{ once: true }}
@@ -62,10 +42,7 @@ function ContactFormSection() {
           </h2>
 
           {/* H3 - semantycznie drugi, wizualnie pierwszy */}
-          <h3 
-            className="text-lg font-semibold mb-4 order-1"
-            style={{ color: COLORS.primary }}
-          >
+          <h3 className="text-lg font-semibold mb-4 order-1 text-gold-700">
             Skorzystaj z Naszych Prostych i Szybkich Procedur
           </h3>
         </motion.div>

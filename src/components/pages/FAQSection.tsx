@@ -3,17 +3,6 @@
 import { motion } from 'framer-motion';
 import { memo, useState } from 'react';
 
-// Stałe kolorów dla spójności
-const COLORS = {
-  primary: '#A4833B',
-  text: '#171717',
-  textSecondary: '#6b7280',
-  success: '#10b981',
-  background: '#fefdf8',
-  border: '#e5e7eb',
-  cardBg: '#ffffff'
-} as const;
-
 // FAQ Data
 const FAQ_DATA = [
   {
@@ -59,16 +48,16 @@ const containerVariants = {
       staggerChildren: 0.1
     }
   }
-};
+} as const;
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
   }
-};
+} as const;
 
 function FAQSection() {
   const [openItem, setOpenItem] = useState<number | null>(0); // Pierwszy element otwarty domyślnie
@@ -81,14 +70,8 @@ function FAQSection() {
     <section className="bg-white py-16 lg:py-20 relative overflow-hidden">
       {/* Subtelne tło */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.08)' }}
-        />
-        <div 
-          className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-15"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.05)' }}
-        />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl bg-gold-700/8" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl bg-gold-700/5" />
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -101,32 +84,20 @@ function FAQSection() {
           transition={{ duration: 0.6 }}
         >
           {/* H2 - semantycznie pierwszy, wizualnie drugi */}
-          <h2 
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight order-2"
-            style={{ color: COLORS.text }}
-          >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight order-2 text-foreground">
             Najczęściej zadawane pytania{' '}
-            <span style={{ color: COLORS.primary }}>(FAQ)</span>
+            <span className="text-gold-700">(FAQ)</span>
             <br className="hidden md:inline" />
-            <span className="text-2xl sm:text-3xl lg:text-4xl block mt-2" style={{ color: COLORS.textSecondary }}>
+            <span className="text-2xl sm:text-3xl lg:text-4xl block mt-2 text-muted-foreground">
               o taxi zastępczym z OC sprawcy
             </span>
           </h2>
 
           {/* H3 - semantycznie drugi, wizualnie pierwszy */}
-          <h3 
-            className="text-lg font-semibold mb-4 order-1"
-            style={{ color: COLORS.primary }}
-          >
+          <h3 className="text-lg font-semibold mb-4 order-1 text-gold-700">
             <span className="relative flex h-2 w-2 mr-2 inline-flex">
-              <span 
-                className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" 
-                style={{ backgroundColor: COLORS.success }}
-              />
-              <span 
-                className="relative inline-flex rounded-full h-2 w-2" 
-                style={{ backgroundColor: COLORS.success }}
-              />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
             Znajdź odpowiedzi na najważniejsze pytania dotyczące naszych usług
           </h3>
@@ -146,37 +117,30 @@ function FAQSection() {
               variants={itemVariants}
               className="group"
             >
-              <div 
-                className="bg-white rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-300 shadow-sm hover:shadow-md overflow-hidden"
-                style={{ backgroundColor: COLORS.cardBg }}
-              >
+              <div className="bg-white rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-300 shadow-sm hover:shadow-md overflow-hidden">
                 {/* Question Button */}
                 <button
                   onClick={() => toggleItem(index)}
-                  className="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all duration-200"
-                  style={{ '--tw-ring-color': COLORS.primary } as React.CSSProperties}
+                  className="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-gold-700 focus:ring-opacity-50 transition-all duration-200"
                   aria-expanded={openItem === index}
                 >
                   <div className="flex items-center justify-between">
-                    <h4 
-                      className="text-lg font-semibold pr-4 leading-tight group-hover:text-opacity-80 transition-colors"
-                      style={{ color: COLORS.text }}
-                    >
+                    <h4 className="text-lg font-semibold pr-4 leading-tight group-hover:text-opacity-80 transition-colors text-foreground">
                       {item.question}
                     </h4>
                     
                     {/* Icon */}
                     <div 
-                      className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
-                      style={{ 
-                        backgroundColor: openItem === index ? COLORS.primary : COLORS.background,
-                        transform: openItem === index ? 'rotate(180deg)' : 'rotate(0deg)'
-                      }}
+                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        openItem === index ? 'bg-gold-700 rotate-180' : 'bg-gold-50 rotate-0'
+                      }`}
                     >
                       <svg 
-                        className="w-4 h-4 transition-colors duration-300" 
+                        className={`w-4 h-4 transition-colors duration-300 ${
+                          openItem === index ? 'text-white' : 'text-gold-700'
+                        }`}
                         fill="none" 
-                        stroke={openItem === index ? 'white' : COLORS.primary} 
+                        stroke="currentColor" 
                         viewBox="0 0 24 24"
                       >
                         <path 
@@ -201,14 +165,8 @@ function FAQSection() {
                   className="overflow-hidden"
                 >
                   <div className="px-6 pb-6">
-                    <div 
-                      className="w-full h-px mb-4"
-                      style={{ backgroundColor: COLORS.border }}
-                    />
-                    <p 
-                      className="text-base leading-relaxed"
-                      style={{ color: COLORS.textSecondary }}
-                    >
+                    <div className="w-full h-px mb-4 bg-border" />
+                    <p className="text-base leading-relaxed text-muted-foreground">
                       {item.answer}
                     </p>
                   </div>
@@ -226,17 +184,11 @@ function FAQSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div 
-            className="inline-flex items-center px-6 py-4 rounded-2xl border-2 hover:shadow-md transition-all duration-300 group"
-            style={{ 
-              backgroundColor: COLORS.background,
-              borderColor: COLORS.primary
-            }}
-          >
+          <div className="inline-flex items-center px-6 py-4 rounded-2xl border-2 hover:shadow-md transition-all duration-300 group bg-gold-50 border-gold-500">
             <svg 
-              className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform duration-200" 
+              className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform duration-200 text-gold-700" 
               fill="none" 
-              stroke={COLORS.primary} 
+              stroke="currentColor" 
               viewBox="0 0 24 24"
             >
               <path 
@@ -247,16 +199,10 @@ function FAQSection() {
               />
             </svg>
             <div className="text-left">
-              <p 
-                className="text-sm font-medium"
-                style={{ color: COLORS.textSecondary }}
-              >
+              <p className="text-sm font-medium text-muted-foreground">
                 Nie znalazłeś odpowiedzi? 
               </p>
-              <p 
-                className="text-lg font-bold"
-                style={{ color: COLORS.primary }}
-              >
+              <p className="text-lg font-bold text-gold-700">
                 Zadzwoń: +48 536 565 565
               </p>
             </div>

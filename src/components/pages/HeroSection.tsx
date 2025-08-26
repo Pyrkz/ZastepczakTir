@@ -38,8 +38,6 @@ const buttonVariants = {
   }
 } as const;
 
-// Usunęliśmy obiekt COLORS - używamy klas Tailwind CSS z Twoimi custom kolorami
-
 // Trust indicators jako stała (nie będą się re-renderować)
 const TRUST_INDICATORS = [
   'Obsługa w całej Polsce',
@@ -118,7 +116,7 @@ function HeroSection() {
             {/* Top notification banner */}
             <motion.div 
               variants={fadeInUp}
-              className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium border rounded-full border-gray-200 text-gold-700 bg-gold-50"
+              className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium border rounded-full border-gold-200 text-gold-700 bg-gold-50"
               role="banner"
               aria-label="Oferta specjalna"
             >
@@ -143,16 +141,16 @@ function HeroSection() {
                   className="w-full sm:w-auto"
                 >
                   <Button
-                    variant="default"
+                    variant="gradient"
                     size="lg"
                     onClick={() => handlePhoneCall('+48536565565')}
-                    className="group w-full text-lg px-8 py-4"
+                    className="group w-full text-lg"
                     aria-label="Zadzwoń teraz po taxi zastępcze"
                   >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    +48 536 565 565
+                    <span className="mr-2">+48 536 565 565</span>
                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -168,13 +166,13 @@ function HeroSection() {
                     variant="secondary"
                     size="lg"
                     onClick={handleScrollToContact}
-                    className="group w-full text-lg px-8 py-4"
+                    className="group w-full text-lg"
                     aria-label="Napisz do nas formularzem kontaktowym"
                   >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    Napisz do nas
+                    <span className="mr-2">Napisz do nas</span>
                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -280,10 +278,11 @@ function HeroSection() {
         </aside>
       </div>
 
-      {/* Background decorative elements */}
+      {/* Background decorative elements - używamy arbitrary values dla opacity */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <motion.div 
-          className="absolute -top-40 -right-40 w-80 h-80 rounded-full blur-3xl bg-gold-700/5"
+          className="absolute -top-40 -right-40 w-80 h-80 rounded-full blur-3xl"
+          style={{ backgroundColor: 'rgba(164, 131, 59, 0.05)' }} // gold-700 z opacity 5%
           animate={{ 
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360]
@@ -295,7 +294,8 @@ function HeroSection() {
           }}
         />
         <motion.div 
-          className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full blur-3xl bg-gold-700/[0.03]"
+          className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full blur-3xl"
+          style={{ backgroundColor: 'rgba(164, 131, 59, 0.03)' }} // gold-700 z opacity 3%
           animate={{ 
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0]

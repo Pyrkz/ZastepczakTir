@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Menu, X, ChevronDown, ChevronRight, Phone } from 'lucide-react';
 import { navigationConfig } from '@/config/navigation';
 import { Button } from '@/components/ui/button';
-import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function MobileMenu() {
@@ -170,6 +169,7 @@ export function MobileMenu() {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
                   asChild
+                  variant="gradient"
                   size="lg"
                   className="w-full text-base"
                 >

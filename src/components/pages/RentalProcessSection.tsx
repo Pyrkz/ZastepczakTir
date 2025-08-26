@@ -3,18 +3,6 @@
 import { motion } from 'framer-motion';
 import { memo } from 'react';
 
-// Stałe kolorów
-const COLORS = {
-  primary: '#A4833B',
-  text: '#171717',
-  textSecondary: '#6b7280',
-  success: '#10b981',
-  background: '#fefdf8',
-  border: '#e5e7eb',
-  iconBg: '#1f2937',
-  iconActive: '#A4833B'
-} as const;
-
 // Dane kroków procesu
 const PROCESS_STEPS = [
   {
@@ -69,16 +57,16 @@ const containerVariants = {
       staggerChildren: 0.2
     }
   }
-};
+} as const;
 
 const stepVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
   }
-};
+} as const;
 
 function RentalProcessSection() {
   // Funkcja do płynnego przewijania do sekcji kontakt
@@ -105,14 +93,8 @@ function RentalProcessSection() {
     <section className="bg-white py-16 lg:py-20 relative overflow-hidden">
       {/* Subtelne tło */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute top-0 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-10"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.3)' }}
-        />
-        <div 
-          className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full blur-3xl opacity-8"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.2)' }}
-        />
+        <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full blur-3xl bg-gold-700/10" />
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full blur-3xl bg-gold-700/8" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -125,18 +107,14 @@ function RentalProcessSection() {
           transition={{ duration: 0.6 }}
         >
           {/* H2 - semantycznie pierwszy, wizualnie drugi */}
-          <h2 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight order-2 max-w-4xl mx-auto"
-            style={{ color: COLORS.text }}
-          >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight order-2 max-w-4xl mx-auto text-foreground">
             Jak wynająć taxi zastępcze tej samej klasy{' '}
             <br className="hidden sm:inline" />
-            <span style={{ color: COLORS.primary }}>co uszkodzony pojazd?</span>
+            <span className="text-gold-700">co uszkodzony pojazd?</span>
             
             {/* Dekoracyjna linia */}
             <motion.div 
-              className="w-20 h-1 mx-auto mt-4 rounded-full"
-              style={{ backgroundColor: COLORS.primary }}
+              className="w-20 h-1 mx-auto mt-4 rounded-full bg-gold-700"
               initial={{ width: 0 }}
               whileInView={{ width: 80 }}
               viewport={{ once: true }}
@@ -145,10 +123,7 @@ function RentalProcessSection() {
           </h2>
 
           {/* H3 - semantycznie drugi, wizualnie pierwszy */}
-          <h3 
-            className="text-base sm:text-lg font-semibold mb-4 order-1 max-w-3xl mx-auto"
-            style={{ color: COLORS.primary }}
-          >
+          <h3 className="text-base sm:text-lg font-semibold mb-4 order-1 max-w-3xl mx-auto text-gold-700">
             Skontaktuj się z nami jeśli potrzebujesz samochodu zastępczego
           </h3>
         </motion.div>
@@ -171,8 +146,7 @@ function RentalProcessSection() {
               {index < PROCESS_STEPS.length - 1 && (
                 <div className="hidden lg:block absolute top-16 left-1/2 w-full h-0.5 bg-gray-200 z-0">
                   <motion.div 
-                    className="h-full rounded-full"
-                    style={{ backgroundColor: COLORS.border }}
+                    className="h-full rounded-full bg-border"
                     initial={{ width: '0%' }}
                     whileInView={{ width: '100%' }}
                     viewport={{ once: true }}
@@ -186,10 +160,9 @@ function RentalProcessSection() {
                 {/* Icon Circle with Number */}
                 <div className="relative inline-block mb-6">
                   <motion.div 
-                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300"
-                    style={{ 
-                      backgroundColor: index === 2 ? COLORS.iconActive : COLORS.iconBg
-                    }}
+                    className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300 ${
+                      index === 2 ? 'bg-gold-700' : 'bg-gray-800'
+                    }`}
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
@@ -199,27 +172,18 @@ function RentalProcessSection() {
                   </motion.div>
 
                   {/* Step Number Badge - directly on the icon */}
-                  <div 
-                    className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white text-sm sm:text-base font-bold shadow-lg border-2 border-white"
-                    style={{ backgroundColor: COLORS.primary }}
-                  >
+                  <div className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white text-sm sm:text-base font-bold shadow-lg border-2 border-white bg-gold-700">
                     {step.id}
                   </div>
                 </div>
 
                 {/* Step Title */}
-                <h4 
-                  className="text-lg sm:text-xl font-bold mb-4 group-hover:text-opacity-80 transition-colors"
-                  style={{ color: COLORS.text }}
-                >
+                <h4 className="text-lg sm:text-xl font-bold mb-4 group-hover:text-opacity-80 transition-colors text-foreground">
                   {step.title}
                 </h4>
 
                 {/* Step Description */}
-                <p 
-                  className="text-sm sm:text-base leading-relaxed text-center lg:text-left"
-                  style={{ color: COLORS.textSecondary }}
-                >
+                <p className="text-sm sm:text-base leading-relaxed text-center lg:text-left text-muted-foreground">
                   {step.description}
                 </p>
               </div>
@@ -235,21 +199,12 @@ function RentalProcessSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div 
-            className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 px-8 py-6 rounded-2xl"
-            style={{ backgroundColor: COLORS.background }}
-          >
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 px-8 py-6 rounded-2xl bg-gold-50">
             <div className="text-center sm:text-left">
-              <h5 
-                className="text-lg sm:text-xl font-bold mb-2"
-                style={{ color: COLORS.text }}
-              >
+              <h5 className="text-lg sm:text-xl font-bold mb-2 text-foreground">
                 Potrzebujesz pomocy z procesem?
               </h5>
-              <p 
-                className="text-sm sm:text-base"
-                style={{ color: COLORS.textSecondary }}
-              >
+              <p className="text-sm sm:text-base text-muted-foreground">
                 Nasi specjaliści pomogą Ci na każdym kroku
               </p>
             </div>
@@ -257,8 +212,7 @@ function RentalProcessSection() {
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => handlePhoneCall('+48536565565')}
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg text-white cursor-pointer"
-                style={{ backgroundColor: COLORS.primary }}
+                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg text-white cursor-pointer bg-gold-700"
                 type="button"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -270,12 +224,7 @@ function RentalProcessSection() {
               <a
                 href="#kontakt"
                 onClick={handleScrollToContact}
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 border-2 cursor-pointer"
-                style={{ 
-                  color: COLORS.primary,
-                  borderColor: COLORS.primary,
-                  backgroundColor: 'white'
-                }}
+                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 border-2 cursor-pointer text-gold-700 border-gold-700 bg-white"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />

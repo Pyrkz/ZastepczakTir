@@ -3,18 +3,6 @@
 import { motion } from 'framer-motion';
 import { memo, useState, useEffect } from 'react';
 
-// Stałe kolorów dla spójności
-const COLORS = {
-  primary: '#A4833B',
-  text: '#171717',
-  textSecondary: '#6b7280',
-  success: '#10b981',
-  background: '#fefdf8',
-  border: '#e5e7eb',
-  cardBg: '#ffffff',
-  star: '#fbbf24'
-} as const;
-
 // Dane opinii z adaptacją do taxi - 8 różnych opinii
 const TESTIMONIALS = [
   {
@@ -106,25 +94,25 @@ const containerVariants = {
       staggerChildren: 0.15
     }
   }
-};
+} as const;
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
   }
-};
+} as const;
 
 const statVariants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: { 
     opacity: 1, 
     scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
   }
-};
+} as const;
 
 function TestimonialsSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -150,7 +138,7 @@ function TestimonialsSection() {
           <svg
             key={i}
             className="w-4 h-4"
-            fill={i < rating ? COLORS.star : '#e5e7eb'}
+            fill={i < rating ? '#fbbf24' : '#e5e7eb'}
             viewBox="0 0 20 20"
           >
             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -164,14 +152,8 @@ function TestimonialsSection() {
     <section className="bg-gradient-to-br from-gray-50 to-white py-16 lg:py-20 relative overflow-hidden">
       {/* Tło z animowanymi kształtami */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 animate-pulse"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.1)' }}
-        />
-        <div 
-          className="absolute bottom-1/3 left-1/4 w-80 h-80 rounded-full blur-3xl opacity-15"
-          style={{ backgroundColor: 'rgba(164, 131, 59, 0.08)' }}
-        />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl bg-gold-700/10 animate-pulse" />
+        <div className="absolute bottom-1/3 left-1/4 w-80 h-80 rounded-full blur-3xl bg-gold-700/8" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -183,31 +165,19 @@ function TestimonialsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h3 
-            className="text-lg font-semibold mb-4 order-1"
-            style={{ color: COLORS.primary }}
-          >
+          <h3 className="text-lg font-semibold mb-4 order-1 text-gold-700">
             <span className="relative flex h-2 w-2 mr-2 inline-flex">
-              <span 
-                className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" 
-                style={{ backgroundColor: COLORS.success }}
-              />
-              <span 
-                className="relative inline-flex rounded-full h-2 w-2" 
-                style={{ backgroundColor: COLORS.success }}
-              />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
             Słowa które napędzają nas do działania
           </h3>
 
-          <h2 
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight order-2"
-            style={{ color: COLORS.text }}
-          >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight order-2 text-foreground">
             Opinie klientów{' '}
-            <span style={{ color: COLORS.primary }}>taxi zastępczego</span>
+            <span className="text-gold-700">taxi zastępczego</span>
             <br className="hidden md:inline" />
-            <span className="text-2xl sm:text-3xl lg:text-4xl block mt-2" style={{ color: COLORS.textSecondary }}>
+            <span className="text-2xl sm:text-3xl lg:text-4xl block mt-2 text-muted-foreground">
               z OC sprawcy
             </span>
           </h2>
@@ -227,21 +197,12 @@ function TestimonialsSection() {
               variants={statVariants}
               className="text-center group"
             >
-              <div 
-                className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 transition-all duration-300 shadow-sm hover:shadow-md group-hover:-translate-y-1"
-                style={{ backgroundColor: COLORS.cardBg }}
-              >
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 transition-all duration-300 shadow-sm hover:shadow-md group-hover:-translate-y-1">
                 <div className="text-3xl mb-2">{stat.icon}</div>
-                <div 
-                  className="text-2xl lg:text-3xl font-bold mb-1"
-                  style={{ color: COLORS.primary }}
-                >
+                <div className="text-2xl lg:text-3xl font-bold mb-1 text-gold-700">
                   {stat.number}
                 </div>
-                <div 
-                  className="text-sm font-medium"
-                  style={{ color: COLORS.textSecondary }}
-                >
+                <div className="text-sm font-medium text-muted-foreground">
                   {stat.label}
                 </div>
               </div>
@@ -259,15 +220,11 @@ function TestimonialsSection() {
         >
           <div 
             className="bg-white rounded-3xl p-8 lg:p-12 border border-gray-100 shadow-lg relative overflow-hidden"
-            style={{ backgroundColor: COLORS.cardBg }}
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
           >
             {/* Decorative quote */}
-            <div 
-              className="absolute top-6 right-6 text-6xl opacity-10 font-serif"
-              style={{ color: COLORS.primary }}
-            >
+            <div className="absolute top-6 right-6 text-6xl opacity-10 font-serif text-gold-700">
               &ldquo;
             </div>
 
@@ -284,38 +241,23 @@ function TestimonialsSection() {
               </div>
 
               {/* Text */}
-              <blockquote 
-                className="text-lg lg:text-xl leading-relaxed mb-6 font-medium"
-                style={{ color: COLORS.text }}
-              >
+              <blockquote className="text-lg lg:text-xl leading-relaxed mb-6 font-medium text-foreground">
                 &ldquo;{TESTIMONIALS[currentTestimonial].text}&rdquo;
               </blockquote>
 
               {/* Author info */}
               <div className="flex items-center justify-between">
                 <div>
-                  <div 
-                    className="font-bold text-lg"
-                    style={{ color: COLORS.text }}
-                  >
+                  <div className="font-bold text-lg text-foreground">
                     {TESTIMONIALS[currentTestimonial].name}
                   </div>
-                  <div 
-                    className="text-sm"
-                    style={{ color: COLORS.textSecondary }}
-                  >
+                  <div className="text-sm text-muted-foreground">
                     {TESTIMONIALS[currentTestimonial].service} • {TESTIMONIALS[currentTestimonial].location}
                   </div>
                 </div>
 
                 {/* Service badge */}
-                <div 
-                  className="px-3 py-1 rounded-full text-xs font-semibold"
-                  style={{ 
-                    backgroundColor: 'rgba(164, 131, 59, 0.1)', 
-                    color: COLORS.primary 
-                  }}
-                >
+                <div className="px-3 py-1 rounded-full text-xs font-semibold bg-gold-700/10 text-gold-700">
                   Zweryfikowana opinia
                 </div>
               </div>
@@ -332,10 +274,9 @@ function TestimonialsSection() {
                   setIsAutoPlaying(false);
                   setTimeout(() => setIsAutoPlaying(true), 3000);
                 }}
-                className="w-3 h-3 rounded-full transition-all duration-300 hover:scale-125"
-                style={{ 
-                  backgroundColor: index === currentTestimonial ? COLORS.primary : COLORS.border 
-                }}
+                className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
+                  index === currentTestimonial ? 'bg-gold-700' : 'bg-border'
+                }`}
                 aria-label={`Przejdź do opinii ${index + 1}`}
               />
             ))}
@@ -373,24 +314,13 @@ function TestimonialsSection() {
                 <div 
                   className={`bg-white rounded-2xl p-6 transition-all duration-300 h-full shadow-sm hover:shadow-md ${
                     isActive 
-                      ? 'border-2 shadow-md' 
+                      ? 'border-2 shadow-md border-gold-700 shadow-gold-700/20' 
                       : 'border border-gray-100 hover:border-gray-200'
                   }`}
-                  style={{ 
-                    backgroundColor: COLORS.cardBg,
-                    borderColor: isActive ? COLORS.primary : undefined,
-                    boxShadow: isActive ? `0 0 0 3px ${COLORS.primary}20` : undefined
-                  }}
                 >
                   {/* Active indicator */}
                   {isActive && (
-                    <div 
-                      className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold mb-3"
-                      style={{ 
-                        backgroundColor: 'rgba(164, 131, 59, 0.1)', 
-                        color: COLORS.primary 
-                      }}
-                    >
+                    <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold mb-3 bg-gold-700/10 text-gold-700">
                       Aktualnie wyświetlana
                     </div>
                   )}
@@ -401,33 +331,26 @@ function TestimonialsSection() {
                   </div>
 
                   {/* Text */}
-                  <p 
-                    className="text-sm leading-relaxed mb-4"
-                    style={{ color: COLORS.textSecondary }}
-                  >
+                  <p className="text-sm leading-relaxed mb-4 text-muted-foreground">
                     &ldquo;{testimonial.text.length > 120 ? testimonial.text.substring(0, 120) + '...' : testimonial.text}&rdquo;
                   </p>
 
                   {/* Author */}
                   <div className="flex items-center justify-between">
                     <div>
-                      <div 
-                        className="font-semibold text-sm"
-                        style={{ color: COLORS.text }}
-                      >
+                      <div className="font-semibold text-sm text-foreground">
                         {testimonial.name}
                       </div>
-                      <div 
-                        className="text-xs"
-                        style={{ color: COLORS.textSecondary }}
-                      >
+                      <div className="text-xs text-muted-foreground">
                         {testimonial.location}
                       </div>
                     </div>
                     <svg 
-                      className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                      className={`w-4 h-4 group-hover:translate-x-1 transition-transform ${
+                        isActive ? 'text-gold-700' : 'text-muted-foreground'
+                      }`}
                       fill="none" 
-                      stroke={isActive ? COLORS.primary : COLORS.textSecondary} 
+                      stroke="currentColor" 
                       viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -447,10 +370,7 @@ function TestimonialsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <p 
-            className="text-sm font-medium"
-            style={{ color: COLORS.textSecondary }}
-          >
+          <p className="text-sm font-medium text-muted-foreground">
             Zobacz więcej opinii na większych ekranach lub przełączając główną opinię
           </p>
         </motion.div>
