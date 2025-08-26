@@ -8,7 +8,7 @@ const PROCESS_STEPS = [
   {
     id: 1,
     title: 'Kontakt',
-    description: 'Skontaktuj się z nami telefonicznie, przez formularz na stronie lub mailowo. Nasi specjaliści są dostępni, aby odpowiedzieć na wszystkie Twoje pytania i rozpocząć proces wynajmu taxi zastępczego. Działamy szybko i sprawnie, abyś mógł jak najszybciej wrócić do normalności.',
+    description: 'Pierwszym krokiem jest skontaktowanie się z naszym zespołem. Możesz to zrobić telefonicznie, mailowo, lub bezpośrednio przez naszą stronę internetową. Nasz doświadczony zespół jest dostępny 24 godziny na dobę, aby odpowiedzieć na Twoje pytania i pomóc Ci rozpocząć proces wynajmu.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -17,8 +17,8 @@ const PROCESS_STEPS = [
   },
   {
     id: 2,
-    title: 'Weryfikacja dokumentów',
-    description: 'Przygotuj niezbędne dokumenty, takie jak prawo jazdy, dowód rejestracyjny uszkodzonego pojazdu oraz dokumenty potwierdzające szkodę. Jeśli masz wątpliwości co do wymaganych dokumentów, nasz zespół pomoże Ci w ich skompletowaniu i sprawdzeniu.',
+    title: 'Weryfikacja dokumnetów',
+    description: 'Po nawiązaniu kontaktu, przejdziemy do weryfikacji niezbędnej dokumentacji. To krok niezbędny do ustalenia Twojego prawa do pojazdu zastępczego oraz do określenia odpowiedzialności OC sprawcy. Prosimy o przygotowanie dokumentów takich jak raport z wypadku, potwierdzenie zgłoszenia szkody w ubezpieczalni oraz dowód rejestracyjny uszkodzonego pojazdu.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -28,7 +28,7 @@ const PROCESS_STEPS = [
   {
     id: 3,
     title: 'Wybór pojazdu',
-    description: 'Wybierz samochód odpowiadający Twoim potrzebom z naszej szerokiej floty. Oferujemy pojazdy z różnych segmentów, aby zapewnić Ci komfort i wygodę podczas użytkowania taxi zastępczego. Każdy pojazd jest w pełni sprawny i gotowy do użytku.',
+    description: 'Następnie wspólnie wybierzemy odpowiedni pojazd zastępczy, który najlepiej odpowiada Twoim potrzebom. Dzięki szerokiej ofercie pojazdów osobowych, premium, dostawczych, a także kontenerów z chłodnią, jesteśmy w stanie zapewnić pojazd idealnie dopasowany do Twoich indywidualnych wymagań.',
     icon: (
       <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
         <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
@@ -38,7 +38,7 @@ const PROCESS_STEPS = [
   {
     id: 4,
     title: 'Odbiór lub dostarczenie samochodu',
-    description: 'Odbierz pojazd osobiście z naszego punktu lub skorzystaj z opcji dostawy pod wskazany adres. Dbamy o to, aby cały proces był dla Ciebie jak najbardziej wygodny, dostosowując się do Twoich potrzeb i oczekiwań.',
+    description: 'Na koniec zorganizujemy dostawę pojazdu zastępczego bezpośrednio do Ciebie lub umówimy miejsce, w którym możesz go odebrać osobiście. Wszystko, by maksymalnie ułatwić i przyspieszyć proces, abyś mógł kontynuować swoje codzienne zadania bez zbędnych przeszkód.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -108,9 +108,7 @@ function RentalProcessSection() {
         >
           {/* H2 - semantycznie pierwszy, wizualnie drugi */}
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight order-2 max-w-4xl mx-auto text-foreground">
-            Jak wynająć taxi zastępcze tej samej klasy{' '}
-            <br className="hidden sm:inline" />
-            <span className="text-gold-700">co uszkodzony pojazd?</span>
+            <span className="text-gold-700">Kontakt</span>
             
             {/* Dekoracyjna linia */}
             <motion.div 
@@ -124,7 +122,7 @@ function RentalProcessSection() {
 
           {/* H3 - semantycznie drugi, wizualnie pierwszy */}
           <h3 className="text-base sm:text-lg font-semibold mb-4 order-1 max-w-3xl mx-auto text-gold-700">
-            Skontaktuj się z nami jeśli potrzebujesz samochodu zastępczego
+            Skontaktuj się z nami jeśli potrzebujesz pojazdu zastępczego z OC sprawcy
           </h3>
         </motion.div>
 

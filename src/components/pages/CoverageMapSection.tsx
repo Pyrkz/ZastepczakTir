@@ -64,12 +64,8 @@ function CoverageMapSection() {
         >
           {/* H2 - semantycznie pierwszy, wizualnie drugi */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight order-2 text-foreground">
-            Dostarczamy taxi zastępcze{' '}
-            <span className="text-gold-700">w całej Polsce</span>
-            <br className="hidden md:inline" />
-            <span className="text-2xl sm:text-3xl lg:text-4xl block mt-2 text-muted-foreground">
-              bezgotówkowy wynajem na koszt ubezpieczyciela sprawcy
-            </span>
+            Ogólnopolski zasięg działania{' '}
+            <span className="text-gold-700">dostarczamy pojazd tam, gdzie jesteś</span>
           </h2>
 
           {/* H3 - semantycznie drugi, wizualnie pierwszy */}
@@ -78,7 +74,7 @@ function CoverageMapSection() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            Taxi zastępcze z OC sprawcy dostarczamy pod wskazany adres
+            Obsługujemy klientów niezależnie od miejsca zdarzenia czy siedziby firmy
           </h3>
         </motion.div>
 
@@ -91,14 +87,12 @@ function CoverageMapSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <p className="text-base md:text-lg max-w-4xl mx-auto leading-relaxed text-muted-foreground">
-            Niezależnie od miejsca zdarzenia czy lokalizacji Twojej działalności taxi, jesteśmy gotowi
-            dostarczyć pojazd zastępczy w dowolne miejsce w Polsce. Nasza sieć obejmuje wszystkie województwa,
-            zapewniając{' '}
+            Niezależnie od miejsca Twojego zamieszkania czy miejsca zdarzenia, jesteśmy gotowi dostarczyć samochód zastępczy w dowolne miejsce w Polsce. Nasza sieć obejmuje wszystkie województwa, zapewniając{' '}
             <span className="font-semibold text-gold-700">szybki i sprawny wynajem</span>{' '}
-            taxi zastępczego wszędzie tam, gdzie tego potrzebujesz.
+            auta zastępczego wszędzie tam, gdzie tego potrzebujesz.
             <br /><br />
             <span className="font-semibold text-foreground">
-              Zaufaj nam, aby szybko i bezproblemowo kontynuować swoją działalność.
+              Zaufaj nam, aby szybko i bezproblemowo odzyskać mobilność.
             </span>
           </p>
         </motion.div>
@@ -148,7 +142,7 @@ function CoverageMapSection() {
               {/* Mapa */}
               <Image
                 src="/maps/obszar-dzialania-zastepczak.png"
-                alt="Mapa działania Zastepczak.pl - obsługa taxi zastępczego w całej Polsce"
+                alt="Mapa działania Zastepczak.pl - obsługa ciężarowych aut zastępczych w całej Polsce"
                 width={500}
                 height={500}
                 className="w-full h-auto object-contain"
@@ -238,7 +232,7 @@ function CoverageMapSection() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            Dostawa taxi w całej Polsce • Bezgotówkowo • 24/7
+            Dostawa ciężarowych aut zastępczych w całej Polsce • Bezgotówkowo • 24/7
           </div>
         </motion.div>
       </div>

@@ -41,9 +41,9 @@ const buttonVariants = {
 // Trust indicators jako stała (nie będą się re-renderować)
 const TRUST_INDICATORS = [
   'Obsługa w całej Polsce',
-  'Bezgotówkowy wynajem taxi', 
+  'Bezgotówkowy wynajem TIR', 
   'Formalności w 15 minut',
-  '24/7 Wsparcie dla taksówkarzy'
+  '24/7 Wsparcie dla kierowców'
 ] as const;
 
 function HeroSection() {
@@ -77,24 +77,24 @@ function HeroSection() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "ZastępczakTir - Taxi Zastępcze",
-            "description": "Profesjonalny wynajem taxi zastępczych dla taksówkarzy po kolizji. Bezgotówkowe wynajmy z OC sprawcy w całej Polsce.",
+            "name": "ZastępczakTir - Ciężarowe Auta Zastępcze",
+            "description": "Wypożyczalnia samochodów ciężarowych, dostawczych i specjalistycznych z OC sprawcy. Bez przerw w prowadzeniu biznesu.",
             "url": "https://zastepczaktir.pl",
             "telephone": "+48536565565",
             "areaServed": "Polska",
-            "serviceType": "Taxi zastępcze",
+            "serviceType": "Ciężarowe auta zastępcze",
             "priceRange": "Bezpłatny wynajem z OC sprawcy",
             "availableLanguage": "Polish",
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
-              "name": "Taxi zastępcze",
+              "name": "Ciężarowe auta zastępcze",
               "itemListElement": [
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Wynajem taxi zastępczego",
-                    "description": "Bezgotówkowy wynajem taxi zastępczego z OC sprawcy kolizji"
+                    "name": "Wynajem ciężarowego auta zastępczego",
+                    "description": "Bezgotówkowy wynajem ciężarowych aut zastępczych z OC sprawcy kolizji"
                   }
                 }
               ]
@@ -124,7 +124,7 @@ function HeroSection() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-gold-700" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-700" />
               </span>
-              Taxi zastępcze od ręki – bez kosztów, kontynuuj pracę w całej Polsce!
+              Specjalistyczne pojazdy zastępcze od ręki – bez kosztów, bez stresu, w całej Polsce!
             </motion.div>
 
             {/* CTA Navigation */}
@@ -145,7 +145,7 @@ function HeroSection() {
                     size="lg"
                     onClick={() => handlePhoneCall('+48536565565')}
                     className="group w-full text-lg"
-                    aria-label="Zadzwoń teraz po taxi zastępcze"
+                    aria-label="Zadzwoń teraz po ciężarowe auto zastępcze"
                   >
                     <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -188,7 +188,7 @@ function HeroSection() {
               role="note"
               aria-label="Informacja prawna"
             >
-              Taxi zastępcze należy Ci się od pierwszego dnia kolizji
+              Ciężarowe auto zastępcze należy Ci się od pierwszego dnia kolizji
             </motion.p>
           </motion.div>
         </header>
@@ -203,7 +203,7 @@ function HeroSection() {
           >
             <Image
               src="/Resources/ZastepczakTir-Hero-min.jpg"
-              alt="Taxi zastępcze ZastępczakTir - profesjonalna flota licencjonowanych taksówek dostępnych bezgotówkowo w całej Polsce dla taksówkarzy po kolizji, wynajem z OC sprawcy"
+              alt="Ciężarowe auta zastępcze ZastępczakTir - profesjonalna flota ciężarówek, dostawczaków i specjalistycznych pojazdów dostępnych bezgotówkowo w całej Polsce, wynajem z OC sprawcy"
               fill
               className="object-contain object-center"
               priority={true}
@@ -213,7 +213,7 @@ function HeroSection() {
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
             />
             <figcaption className="sr-only" id="hero-image">
-              Obrazek przedstawia flotę taxi zastępczych dostępnych dla taksówkarzy po kolizji
+              Obrazek przedstawia flotę ciężarowych aut zastępczych dostępnych po kolizji
             </figcaption>
           </motion.figure>
         </section>
@@ -230,26 +230,19 @@ function HeroSection() {
               variants={fadeInUp}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900"
             >
-              Zamów Taxi zastępcze z OC sprawcy{' '}
-              <span className="text-gold-700">bezgotówkowo</span>
-              <br className="hidden md:inline" />
-              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block mt-2 text-gray-900">
-                nie przerywaj pracy jako taksówkarz
-              </span>
+              Ciężarowe Auta Zastępcze z OC Sprawcy{' '}
+              <span className="text-gold-700">Bez przerw w prowadzeniu biznesu</span>
             </motion.h1>
 
             <motion.div 
               variants={fadeInUp}
               className="max-w-3xl mx-auto"
             >
-              <h2 className="sr-only">Dlaczego wybrać ZastępczakTir</h2>
-              <p className="text-lg md:text-xl leading-relaxed mb-4 text-gray-600">
-                Specjalizujemy się w wynajmie taxi zastępczych dla taksówkarzy po kolizji. W ciągu zaledwie{' '}
-                <strong className="font-semibold text-gold-700">15 minut</strong>{' '}
-                załatwiamy wszystkie formalności, abyś mógł szybko wrócić do wykonywania swojej pracy.
-              </p>
+              <h2 className="text-lg md:text-xl font-semibold leading-relaxed mb-4 text-gray-900">
+                Wypożyczalnia samochodów ciężarowych, dostawczych i specjalistycznych z OC sprawcy
+              </h2>
               <p className="text-base md:text-lg leading-relaxed text-gray-600">
-                Rozumiemy, że każda godzina bez pracy to strata zarobków. Dlatego dostarczamy sprawne taxi z licencją dokładnie tam, gdzie potrzebujesz – <strong>w całej Polsce</strong>.
+                Szukasz niezawodnych ciężarowych aut zastępczych z OC sprawcy? Dobrze trafiłeś! Oferujemy szeroką flotę pojazdów zastępczych, bezproblemową pomoc w roszczeniach ubezpieczeniowych i wyjątkową obsługę klienta. Skontaktuj się z nami już dziś!
               </p>
             </motion.div>
           </motion.div>

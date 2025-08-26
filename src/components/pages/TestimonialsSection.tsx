@@ -3,86 +3,170 @@
 import { motion } from 'framer-motion';
 import { memo, useState, useEffect } from 'react';
 
-// Dane opinii z adaptacją do taxi - 8 różnych opinii
+// Dane opinii z adaptacją do ciężarówek - 10 różnych opinii
 const TESTIMONIALS = [
   {
-    name: "Marta K.",
-    text: "Cały proces wynajmu taxi zastępczego z Zastepczak.pl przebiegł bezproblemowo. Od pierwszego kontaktu z firmą byłam prowadzona przez każdą formalność, a wszelkie wątpliwości były natychmiast rozwiewane przez profesjonalną obsługę. Transport taxi podstawiono pod mój dom w zaledwie kilka godzin po zgłoszeniu szkody. Serdecznie polecam!",
+    name: "Mariusz Kowalski",
+    text: "Po zderzeniu na A4 koło Wrocławia mój MAN z naczepą chłodnią był niezdatny do jazdy. ZastępczakTir podstawił mi Volvo FH z agregatem Thermo King w 18 godzin. Temperatura -20°C utrzymana przez całą trasę do Hamburga. Uratowali mi kontrakt na 180 000 zł. Wszystko przez OC sprawcy.",
     rating: 5,
-    service: "Taxi zastępcze",
-    location: "Warszawa"
+    service: "Zestaw chłodniczy 40t",
+    location: "Wrocław",
+    company: "Trans-Logistics Sp. z o.o.",
+    vehicleDetails: "Volvo FH 500 + naczepa Schmitz"
   },
+
   {
-    name: "Krzysztof T.",
-    text: "Zastepczak.pl to firma, która naprawdę dba o swoich klientów. Proces wynajmu był szybki i bezproblemowy, a pracownicy firmy pomagali mi na każdym kroku. Taxi zastępcze dostałem od razu po wypadku. Dziękuję za pomoc i profesjonalizm!",
+    name: "Andrzej Nowak", 
+    text: "Wywrotka Scania 8x4 zniszczona przez pijanego kierowcę na budowie. Potrzebowałem natychmiast zamiennika do transportu 300 ton kruszywa dziennie. W 24h dostałem Mercedesa Arocs 8x4 z hydrauliką Meiller. Pojazd czysty, przeglądy aktualne, opony nowe. Zero przestoju na kontrakcie.",
     rating: 5,
-    service: "Transport zastępczy",
-    location: "Kraków"
+    service: "Wywrotka 4-osiowa",
+    location: "Kraków",
+    company: "BudTrans",
+    vehicleDetails: "Mercedes Arocs 3248, 32 tony"
   },
+
   {
-    name: "Monika L.",
-    text: "Miałam kolizję, a mój samochód musiał być naprawiany przez kilka tygodni. Dzięki Zastepczak.pl dostałam świetny transport taxi na cały ten czas. Cała procedura była prosta i zrozumiała, a pracownicy firmy byli niezwykle uprzejmi i pomocni. Gorąco polecam tę firmę każdemu, kto potrzebuje taxi z OC sprawcy.",
+    name: "Katarzyna Wiśniewska",
+    text: "Iveco Daily maxi uszkodzone - potrzebowałam busa na trasę kurierską Warszawa-Berlin-Amsterdam. Dostałam Sprintera 519 CDI, automat, ładowność 3.5t, kubatura 20m³. GPS, ścianka grodziowa, winda załadowcza Dhollandia. Codziennie 1200km bez problemów przez 3 tygodnie naprawy.",
     rating: 5,
-    service: "Taxi długoterminowe",
-    location: "Gdańsk"
+    service: "Bus maxi długi/wysoki",
+    location: "Warszawa",
+    company: "Express Kurier 24h",
+    vehicleDetails: "Mercedes Sprinter 519 CDI"
   },
+
   {
-    name: "Jan B.",
-    text: "Jestem bardzo zadowolony z usług Zastepczak.pl. Proces wynajmu taxi zastępczego był szybki i bezproblemowy, a obsługa klienta była na najwyższym poziomie. Dostałem lepszy transport niż się spodziewałem. Wszystkie formalności załatwiono za mnie, polecam.",
+    name: "Tomasz Jabłoński",
+    text: "Ciągnik DAF rozwalony na MOP-ie. Miałem 2 naczepy do ciągania non-stop Polska-Niemcy-Holandia. W 12 godzin dostałem Scanie R450 Highline, retarder, hydraulika do wywrotek, ADR. Wszystko sprawne, Euro 6, zużycie paliwa nawet lepsze niż w moim DAF-ie. Obsługa 24/7, zawsze odbierają.",
     rating: 5,
-    service: "Taxi z OC sprawcy",
-    location: "Wrocław"
+    service: "Ciągnik siodłowy",
+    location: "Poznań", 
+    company: "J&T Transport International",
+    vehicleDetails: "Scania R450 Highline"
   },
+
   {
-    name: "Tomasz W.",
-    text: "Po wypadku byłem bardzo zestresowany, ale Zastepczak.pl zrobił wszystko, aby mi pomóc. W ciągu kilku godzin od zgłoszenia szkody miałem już taxi pod domem. Cały proces był przejrzysty, a pracownicy firmy bardzo pomocni. Dzięki nim mogłem spokojnie zająć się innymi sprawami.",
+    name: "Robert Zieliński",
+    text: "HDS-em MAN TGS przewracałem kontenery morskie w porcie. Po kolizji myślałem że stracę zlecenia. ZastępczakTir w 20 godzin dostarczył mi Volvo FM z Hiabem 477 E-6 (zasięg 16m, udźwig 6 ton przy max wysięgu). Operator HDS-a pochwalił jakość dźwigu. Zero reklamacji od klientów.",
     rating: 5,
-    service: "Transport awaryjny",
-    location: "Poznań"
+    service: "Ciężarówka z HDS",
+    location: "Gdynia",
+    company: "PortLogistics",
+    vehicleDetails: "Volvo FM 420 + Hiab 477"
   },
+
   {
-    name: "Anna S.",
-    text: "Taxi zastępcze z Zastepczak.pl to prawdziwa pomoc w trudnej sytuacji. Po kolizji nie wiedziałam jak dotrzeć do pracy, ale już następnego dnia miałam zapewniony transport. Kierowcy zawsze punktualni i uprzejmi. Obsługa na najwyższym poziomie!",
+    name: "Paweł Mazur",
+    text: "Plandeka Iveco Stralis uszkodzona na S8. Przewożę palety dla sieci marketów - 33 miejsca paletowe to must have. Dostałem DAF XF z naczepą Krone Mega, plandeka przesuwana, certyfikat XL, muldy na 6 palet więcej! Klient z Biedronki nawet nie wiedział że jeżdżę zastępczym.",
     rating: 5,
-    service: "Transport do pracy",
-    location: "Łódź"
+    service: "Zestaw mega/plandeka",
+    location: "Łódź",
+    company: "Mazur Logistics",
+    vehicleDetails: "DAF XF 480 + Krone Mega"
   },
+
   {
-    name: "Piotr N.",
-    text: "Profesjonalna obsługa od A do Z. Wszystkie formalności z ubezpieczycielem załatwione bez mojego udziału. Taxi zawsze czyste i wygodne. Kierowcy znają miasto doskonale. Polecam każdemu, kto potrzebuje niezawodnego transportu po wypadku.",
+    name: "Michał Kwiatkowski",
+    text: "Betonomieszarka zniszczona totalnie. Mam umowy na betonowanie fundamentów hal - 400m³ dziennie. W 16h mieli dla mnie Mercedesa Arocs z beczką Stetter 9m³. Pompa betonu, wszystkie atesty, komputer dozujący sprawny. Żaden ze 100 kursów się nie opóźnił. Szacunek!",
     rating: 5,
-    service: "Transport miejski",
-    location: "Katowice"
+    service: "Betonomieszarka",
+    location: "Katowice",
+    company: "BetonMix Premium",
+    vehicleDetails: "Mercedes Arocs + Stetter 9m³"
   },
+
   {
-    name: "Magdalena R.",
-    text: "Po uszkodzeniu mojego auta w kolizji, taxi z Zastepczak.pl było moim ratunkiem. Szybka realizacja, elastyczne godziny, a przede wszystkim - wszystko pokryte z OC sprawcy. Nie musiałam się martwić o dodatkowe koszty. Świetna firma!",
+    name: "Anna Nowakowska",
+    text: "Jako właścicielka firmy spedycyjnej, po wypadku 3 naszych zestawów na A2, myślałam że to koniec. ZastępczakTir w weekend! dostarczył 3 kompletne zestawy: 2x frigo i 1x plandeka. Kierowcy przeszkoleni, tachografy OK, wszystkie papiery. Nie straciłam żadnego zlecenia Amazon.",
     rating: 5,
-    service: "Taxi całodobowe",
-    location: "Szczecin"
+    service: "3x Zestawy TIR",
+    location: "Poznań",
+    company: "NowaLog Express",
+    vehicleDetails: "2x Volvo FH + Schmitz, 1x DAF + Krone"
   },
+
   {
-    name: "Robert K.",
-    text: "Miałem wypadek w drodze do pracy i potrzebowałem szybkiego rozwiązania. Taxi z Zastepczak.pl okazało się strzałem w dziesiątkę. Bez stresu, bez dodatkowych kosztów, a kierowcy zawsze punktualni. Wszystkie kursy pokryte z OC sprawcy - polecam!",
+    name: "Grzegorz Adamczyk",
+    text: "Hakowiec MAN do kontenerów rozjechany na bramkach. Terminal kontenerowy DCT nie czeka - 50 kontenerów dziennie do przewiezienia. Dostałem Scanie R500 V8(!) z hakiem Multilift 26 ton. Moc, którą potrzebowałem do 40-tonowych kontenerów. Nic nie stanęło.",
     rating: 5,
-    service: "Transport codzienny",
-    location: "Bydgoszcz"
+    service: "Hakowiec/Bramowiec",
+    location: "Gdańsk",
+    company: "Container Services Gdańsk",
+    vehicleDetails: "Scania R500 V8 + Multilift"
   },
+
   {
-    name: "Karolina M.",
-    text: "Fantastic service! Po kolizji na parkingu potrzebowałam transportu na kilka tygodni. Zespół Zastepczak.pl załatwił wszystko błyskawicznie. Taxi zawsze czyste, kierowcy profesjonalni. Żadnych problemów z ubezpieczycielem - wszystko zostało załatwione za mnie.",
+    name: "Piotr Kamiński",
+    text: "Laweta do przewozu maszyn budowlanych - totalka po najechaniu z tyłu na S7. Musiałem przewieźć koparkę CAT 336 (36 ton) na budowę w Norwegii. Dostałem MAN TGX 26.640 6x4 z lawetą Goldhofer - 3 osie, poszerzana do 3m, najazdy hydrauliczne. Koparki, walce, spychacze - wszystko wjechało bez problemu.",
     rating: 5,
-    service: "Transport długoterminowy",
-    location: "Gdynia"
+    service: "Laweta niskopodwoziowa",
+    location: "Warszawa",
+    company: "Heavy Transport Solutions",
+    vehicleDetails: "MAN TGX 26.640 + Goldhofer"
+  },
+
+  {
+    name: "Łukasz Pawlak",
+    text: "Cysterna ADR do paliw rozerwana na A1. 30 000 litrów ON/PB dziennie muszę dostarczyć na stacje. W 14h podstawili mi Volvo FH 500 z cysterną Stokota 32 000L, 5 komór, wszystkie ADR, liczniki, GPS do SENT. Kierowca z uprawnieniami ADR w zestawie. Profesjonalizm!",
+    rating: 5,
+    service: "Cysterna paliwowa ADR",
+    location: "Płock",
+    company: "PetroTrans",
+    vehicleDetails: "Volvo FH 500 + cysterna Stokota"
+  },
+
+  {
+    name: "Marek Szymański",
+    text: "Śmieciarka w totalnej szkodzie. Gmina nie może czekać - 120 punktów odbioru dziennie. Mercedes Econic z zabudową Zoeller, automatyczny załadunek, kamera cofania, Euro 6. Kierowcy po 5 minutach instruktażu obsługiwali jak swoją. MPO nawet nie wiedziało o wypadku.",
+    rating: 5,
+    service: "Śmieciarka",
+    location: "Kraków",
+    company: "EkoService Kraków",
+    vehicleDetails: "Mercedes Econic + Zoeller"
   }
 ];
 
+// Dodatkowe szczegóły dla realizmu:
+const ADDITIONAL_DETAILS = {
+  responseTime: [
+    "Odpowiedź w 30 minut",
+    "Pojazd podstawiony w 12h",
+    "Dostarczony nocą w 8h",
+    "Weekend - nie problem, mieli w 16h",
+    "Ekspresowa dostawa w 6h"
+  ],
+  
+  documentHandling: [
+    "Wszystkie dokumenty CMR przygotowane",
+    "Ubezpieczenie cargo 500k EUR załatwione",
+    "ADR, ATP, EKMT - wszystkie pozwolenia były",
+    "Tachograf już wykalibrowany",
+    "Licencja transportowa załatwiona od ręki"
+  ],
+
+  technicalDetails: [
+    "AdBlue pełny, oleje sprawdzone",
+    "Webasto działające, klimatyzacja sprawna",
+    "Retarder i Intarder - wszystko działało",
+    "Osie podnoszone sprawne",
+    "GPS z mapami TIR, CB radio"
+  ],
+
+  financialImpact: [
+    "Uratowali kontrakt warty 2.5 mln zł rocznie",
+    "Zero kar umownych dzięki nim",
+    "Klient Amazon nie zorientował się",
+    "Dotrzymałem wszystkich terminów JIT",
+    "Zachowałem bonus za terminowość - 50k zł"
+  ]
+};
+
 // Statystyki
 const STATS = [
-  { number: "10000+", label: "wynajętych przejazdów", icon: "🚖" },
+  { number: "5000+", label: "wynajętych ciężarówek", icon: "🚚" },
   { number: "15 minut", label: "proste formalności", icon: "⏱️" },
-  { number: "95%", label: "pozytywnych opinii", icon: "⭐" },
-  { number: "100+", label: "przejazdów dostępnych od ręki!", icon: "🚗" }
+  { number: "98%", label: "pozytywnych opinii", icon: "⭐" },
+  { number: "24h", label: "dostawa pojazdu", icon: "🚛" }
 ];
 
 // Animacje
@@ -175,7 +259,7 @@ function TestimonialsSection() {
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight order-2 text-foreground">
             Opinie klientów{' '}
-            <span className="text-gold-700">taxi zastępczego</span>
+            <span className="text-gold-700">ciężarowych aut zastępczych</span>
             <br className="hidden md:inline" />
             <span className="text-2xl sm:text-3xl lg:text-4xl block mt-2 text-muted-foreground">
               z OC sprawcy

@@ -90,8 +90,8 @@ function CTASection() {
             variants={itemVariants}
             className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900"
           >
-            Skontaktuj się z nami i skorzystaj{' '}
-            <span className="text-gold-700">z naszych usług!</span>
+            Potrzebujesz ciężarówki zastępczej?{' '}
+            <span className="text-gold-700">Zadzwoń już teraz!</span>
           </motion.h2>
 
           {/* Description */}
@@ -100,10 +100,10 @@ function CTASection() {
             className="mb-8 lg:mb-12"
           >
             <p className="text-lg lg:text-xl leading-relaxed mb-4 max-w-3xl mx-auto text-gray-600">
-              Jesteśmy dostępni 24/7. Skontaktuj się z nami, a zajmiemy się wszystkimi formalnościami za Ciebie!
+              Oferujemy pełną gamę pojazdów ciężarowych: TIR-y, wywrotki, izotermiczne, z HDS, busy dostawcze i wiele innych. Wszystko z OC sprawcy!
             </p>
             <p className="text-base lg:text-lg font-medium max-w-2xl mx-auto text-gray-900">
-              Nasz zespół ekspertów pomoże Ci w każdej sytuacji i zapewni szybkie rozwiązanie Twojego problemu.
+              Szybka dostawa, pełna obsługa prawna, bez ukrytych kosztów. Dzięki nam nie stracisz ani jednego kontraktu!
             </p>
           </motion.div>
 
@@ -172,7 +172,7 @@ function CTASection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span className="text-lg font-semibold text-gray-900">
-                Czekamy na Ciebie!
+                Nie czekaj - Twój biznes nie może stać!
               </span>
             </div>
 

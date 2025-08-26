@@ -26,9 +26,8 @@ function InsurersSection() {
         >
           {/* H2 - semantycznie pierwszy, wizualnie drugi */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 leading-tight order-2 relative text-gray-900">
-            Wszystkich należności dochodzimy sami od{' '}
-            <br className="hidden md:inline" />
-            <span className="text-gold-700">Towarzystwa Ubezpieczeniowego</span>
+            Oferujemy{' '}
+            <span className="text-gold-700">Bezkosztowy wynajem z OC sprawcy</span>
             
             {/* Dekoracyjna linia */}
             <motion.div 
@@ -46,7 +45,7 @@ function InsurersSection() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-green-500" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
             </span>
-            Wszystkie koszty za wynajem taxi zastępczego z OC pokrywane są przez ubezpieczyciela sprawcy szkody
+            Wszystkie koszty za wynajem auta zastępczego z OC pokrywane są przez ubezpieczyciela sprawcy szkody
           </h3>
         </motion.div>
 
@@ -78,12 +77,11 @@ function InsurersSection() {
 
           {/* Dodatkowy opis */}
           <p className="text-sm max-w-3xl mx-auto leading-relaxed text-gray-600">
-            Dzięki długoletniemu doświadczeniu i współpracy z największymi towarzystwami ubezpieczeniowymi w Polsce,
-            zapewniamy{' '}
+            Zajmujemy się wszystkimi negocjacjami i rozliczeniami bezpośrednio z ubezpieczalnią strony winnej. Oznacza to, że nie musisz martwić się o{' '}
             <span className="font-semibold text-gold-700">
-              płynny proces rozliczania
+              aspekty finansowe
             </span>{' '}
-            bez żadnych dodatkowych formalności z Twojej strony.
+            i możesz skupić się na swojej firmie.
           </p>
         </motion.div>
       </div>

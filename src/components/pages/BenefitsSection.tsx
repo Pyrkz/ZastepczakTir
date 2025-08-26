@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { memo } from 'react';
 
-// Ikony SVG dla każdego benefitu - dostosowane do branży taxi
+// Ikony SVG dla każdego benefitu - dostosowane do branży ciężarowej
 const BENEFIT_ICONS = {
   money: (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -15,59 +15,64 @@ const BENEFIT_ICONS = {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
     </svg>
   ),
-  taxi: (
+  truck: (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0h6m-6 0l-2 9a2 2 0 002 2h8a2 2 0 002-2l-2-9m-8 0V6a2 2 0 012-2h4a2 2 0 012 2v1" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
     </svg>
   ),
   support: (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2a9 9 0 019 9 9 9 0 01-9 9 9 9 0 01-9-9 9 9 0 019-9z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+    </svg>
+  ),
+  delivery: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+    </svg>
+  ),
+  unlimited: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
   ),
   clock: (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
-  ),
-  license: (
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
   )
 } as const;
 
-// Benefity dostosowane do taksówkarzy
+// Benefity dostosowane do kierowców ciężarówek
 const BENEFITS = [
   {
-    title: 'Zero kosztów',
-    desc: 'Taxi zastępcze całkowicie za darmo z OC sprawcy. Nie tracisz ani złotówki.',
-    icon: BENEFIT_ICONS.money,
-    highlight: 'Bezpłatny'
-  },
-  {
-    title: 'Ekspresowa dostawa',
-    desc: 'Dostarczamy licencjonowane taxi w najkrótszym czasie wszędzie w Polsce.',
+    title: 'Szybkość i Skuteczność w Realizacji Usług',
+    desc: 'Nasz zespół to specjaliści, którzy dbają o to, by proces wynajmu był jak najbardziej efektywny i szybki. Dzięki temu możesz liczyć na natychmiastowe wsparcie i minimalny przestój w Twojej działalności.',
     icon: BENEFIT_ICONS.speed,
-    highlight: 'Natychmiast'
+    highlight: 'Ekspresowo'
   },
   {
-    title: 'Taxi z licencją',
-    desc: 'Wszystkie nasze pojazdy mają ważne licencje taxi. Możesz od razu pracować.',
-    icon: BENEFIT_ICONS.license,
-    highlight: 'Licencjonowane'
+    title: 'Brak Ukrytych Opłat',
+    desc: 'Transparentność to dla nas klucz. U nas nie znajdziesz żadnych ukrytych kosztów – wszystkie opłaty są jasno określone od początku współpracy.',
+    icon: BENEFIT_ICONS.money,
+    highlight: 'Transparentnie'
   },
   {
-    title: 'Formalności za Ciebie',
-    desc: 'Załatwiamy wszystko z ubezpieczycielem. Ty koncentrujesz się na zarabiu.',
-    icon: BENEFIT_ICONS.support,
-    highlight: 'Bez stresu'
+    title: 'Nieograniczony Przebieg',
+    desc: 'Rozumiemy, że Twoje potrzeby transportowe mogą być różnorodne, dlatego oferujemy nieograniczony przebieg, pozwalając na swobodę i elastyczność w użytkowaniu pojazdu.',
+    icon: BENEFIT_ICONS.unlimited,
+    highlight: 'Bez limitów'
   },
   {
-    title: 'Wsparcie 24/7',
-    desc: 'Całodobowa pomoc dla taksówkarzy. Zawsze jesteśmy gotowi pomóc.',
+    title: 'Bezpłatny Odbiór i Dostawa Pojazdów',
+    desc: 'Aby maksymalnie ułatwić Ci proces wynajmu, oferujemy darmowy odbiór i dostawę pojazdów zastępczych. Niezależnie od Twojej lokalizacji w Polsce, jesteśmy gotowi służyć pomocą.',
+    icon: BENEFIT_ICONS.delivery,
+    highlight: 'Za darmo'
+  },
+  {
+    title: 'Szybkie i Łatwe Formalności Wynajmu',
+    desc: 'Wiemy, jak cenny jest Twój czas. Dlatego zapewniamy, że wszystkie formalności załatwisz szybko i bez zbędnych komplikacji, często w ciągu zaledwie 15 minut.',
     icon: BENEFIT_ICONS.clock,
-    highlight: 'Non-stop'
+    highlight: '15 minut'
   }
 ] as const;
 
@@ -111,12 +116,8 @@ function BenefitsSection() {
         >
           {/* H2 - semantycznie pierwszy, ale wizualnie drugi (order-2) */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight order-2 text-foreground">
-            Wynajmij taxi zastępcze{' '}
-            <span className="text-gold-700">z OC sprawcy</span>
-            <br className="hidden md:inline" />
-            <span className="text-2xl sm:text-3xl lg:text-4xl block mt-2 text-muted-foreground">
-              i kontynuuj pracę jako taksówkarz
-            </span>
+            Dlaczego Wybrać Nasze{' '}
+            <span className="text-gold-700">Ciężarowe Auta Zastępcze z OC?</span>
           </h2>
 
           {/* H3 - semantycznie drugi, ale wizualnie pierwszy (order-1) */}
@@ -125,7 +126,7 @@ function BenefitsSection() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            Specjalizujemy się w taxi zastępczych dla taksówkarzy
+            Od pierwszego dnia powstania szkody przysługuje samochód zastępczy z OC
           </h3>
         </motion.div>
 
@@ -183,7 +184,7 @@ function BenefitsSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-lg font-medium text-muted-foreground">
-            Potrzebujesz taxi zastępczego? 
+            Potrzebujesz ciężarowego auta zastępczego? 
             <span className="font-semibold ml-1 text-gold-700">
               Zadzwoń: +48 536 565 565
             </span>
